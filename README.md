@@ -59,6 +59,6 @@ Usually you call it in -setup. Then call +[IUTSurikae cleanAll] in teardown.
 
 Please see a sample project’s CalenderTest and WeatherTest.
 
-LICENCE
+LICENCE  
 =
 BSD Licence
