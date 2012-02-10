@@ -27,9 +27,9 @@ static id _delegate = nil;
     
     _delegate = self;
     
-    // If set grobal YES, IUTSurikae class retains exchanged methods.
+    // If set global YES, IUTSurikae class retains exchanged methods.
     // When you want to revrive these all exchanged methods, call +[IUTSurikae cleanAl]. 
-    [IUTSurikae surikaeWithClassMethod:@selector(connectionWithRequest:delegate:) originalClass:[NSURLConnection class] mockClass:[self class] grobal:YES];
+    [IUTSurikae surikaeWithClassMethod:@selector(connectionWithRequest:delegate:) originalClass:[NSURLConnection class] mockClass:[self class] global:YES];
     
     self.weather = [Weather new];
 }

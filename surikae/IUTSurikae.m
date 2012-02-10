@@ -38,19 +38,19 @@ static NSMutableArray *surikaeKamen = nil;
     [surikaeKamen removeObject:surikae];
 }
 
-+ (IUTSurikae *)surikaeWithClassMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass grobal:(BOOL)grobal
++ (IUTSurikae *)surikaeWithClassMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass global:(BOOL)global
 {
     IUTSurikae *surikae = [[[self alloc] initWithClassMethod:method originalClass:originalClass mockClass:mockClass] autorelease];
-    if (grobal) {
+    if (global) {
         [[self class] registSurikae:surikae];
     }
     return surikae;
 }
 
-+ (IUTSurikae *)surikaeWithInstanceMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass grobal:(BOOL)grobal
++ (IUTSurikae *)surikaeWithInstanceMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass global:(BOOL)global
 {
     IUTSurikae *surikae = [[[self alloc] initWithInstanceMethod:method originalClass:originalClass mockClass:mockClass] autorelease];
-    if (grobal) {
+    if (global) {
         [[self class] registSurikae:surikae];
     }
     return surikae;
@@ -59,12 +59,12 @@ static NSMutableArray *surikaeKamen = nil;
 
 + (IUTSurikae *)surikaeWithClassMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass
 {
-    return [self surikaeWithClassMethod:method originalClass:originalClass mockClass:mockClass grobal:NO];
+    return [self surikaeWithClassMethod:method originalClass:originalClass mockClass:mockClass global:NO];
 }
 
 + (IUTSurikae *)surikaeWithInstanceMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass
 {
-    return [self surikaeWithInstanceMethod:method originalClass:originalClass mockClass:mockClass grobal:NO];
+    return [self surikaeWithInstanceMethod:method originalClass:originalClass mockClass:mockClass global:NO];
 }
 
 + (void)clearAll
