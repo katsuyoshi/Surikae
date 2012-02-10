@@ -19,6 +19,10 @@
 
 + (IUTSurikae *)surikaeWithClassMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass;
 + (IUTSurikae *)surikaeWithInstanceMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass;
+
++ (IUTSurikae *)surikaeWithClassMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass grobal:(BOOL)grobal;
++ (IUTSurikae *)surikaeWithInstanceMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass grobal:(BOOL)grobal;
+
 + (void)clearAll;
 
 - (id)initWithClassMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass;
