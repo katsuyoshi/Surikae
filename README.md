@@ -55,7 +55,7 @@ It will retrieve when NSAutoreleasePool releases the UITSurikae object.
 You don’t need to call +[IUTSurikae cleanAll].
 
 Your exchange effects more long term, choose YES.  
-Usually you call it in -setup. Then call +[IUTSurikae cleanAll] in teardown.
+Usually you call it in -setUp. Then call +[IUTSurikae cleanAll] in tearDown.
 
 Please see a sample project’s CalenderTest and WeatherTest.
 
