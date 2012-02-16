@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4678542714DD9C3C00F7CDF0 /* Calendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4678542614DD9C3C00F7CDF0 /* Calendar.m */; };
-		4678542B14DD9C5700F7CDF0 /* CalendarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4678542A14DD9C5700F7CDF0 /* CalendarTest.m */; };
 		4678543114DD9C7300F7CDF0 /* IUTSurikae.m in Sources */ = {isa = PBXBuildFile; fileRef = 4678542E14DD9C7300F7CDF0 /* IUTSurikae.m */; };
 		4678543214DD9C7300F7CDF0 /* surikae.m in Sources */ = {isa = PBXBuildFile; fileRef = 4678543014DD9C7300F7CDF0 /* surikae.m */; };
 		469B32D614B42CFF0041CAF8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469B32D514B42CFF0041CAF8 /* UIKit.framework */; };
@@ -48,13 +46,11 @@
 		46E1391914E47F6800EEEF4F /* NSDateExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E1391814E47F6800EEEF4F /* NSDateExtension.m */; };
 		46E1391D14E482EE00EEEF4F /* WeatherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E1391C14E482EE00EEEF4F /* WeatherTest.m */; };
 		46E1392814E487A700EEEF4F /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E1392714E487A700EEEF4F /* Weather.m */; };
+		46F955CC14EDC11B00F9BF84 /* StopWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F955CB14EDC11B00F9BF84 /* StopWatch.m */; };
+		46F955D014EDC19D00F9BF84 /* StopWatchTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F955CF14EDC19D00F9BF84 /* StopWatchTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4678542514DD9C3C00F7CDF0 /* Calendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calendar.h; sourceTree = "<group>"; };
-		4678542614DD9C3C00F7CDF0 /* Calendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calendar.m; sourceTree = "<group>"; };
-		4678542914DD9C5700F7CDF0 /* CalendarTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarTest.h; sourceTree = "<group>"; };
-		4678542A14DD9C5700F7CDF0 /* CalendarTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarTest.m; sourceTree = "<group>"; };
 		4678542D14DD9C7300F7CDF0 /* IUTSurikae.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUTSurikae.h; sourceTree = "<group>"; };
 		4678542E14DD9C7300F7CDF0 /* IUTSurikae.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IUTSurikae.m; sourceTree = "<group>"; };
 		4678542F14DD9C7300F7CDF0 /* surikae.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = surikae.h; sourceTree = "<group>"; };
@@ -127,6 +123,10 @@
 		46E1391C14E482EE00EEEF4F /* WeatherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherTest.m; sourceTree = "<group>"; };
 		46E1392614E487A700EEEF4F /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weather.h; sourceTree = "<group>"; };
 		46E1392714E487A700EEEF4F /* Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Weather.m; sourceTree = "<group>"; };
+		46F955CA14EDC11B00F9BF84 /* StopWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopWatch.h; sourceTree = "<group>"; };
+		46F955CB14EDC11B00F9BF84 /* StopWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopWatch.m; sourceTree = "<group>"; };
+		46F955CE14EDC19D00F9BF84 /* StopWatchTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopWatchTest.h; sourceTree = "<group>"; };
+		46F955CF14EDC19D00F9BF84 /* StopWatchTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopWatchTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,10 +294,10 @@
 		469B334F14B438710041CAF8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				4678542514DD9C3C00F7CDF0 /* Calendar.h */,
-				4678542614DD9C3C00F7CDF0 /* Calendar.m */,
 				46E1392614E487A700EEEF4F /* Weather.h */,
 				46E1392714E487A700EEEF4F /* Weather.m */,
+				46F955CA14EDC11B00F9BF84 /* StopWatch.h */,
+				46F955CB14EDC11B00F9BF84 /* StopWatch.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -307,10 +307,10 @@
 			children = (
 				46E1391714E47F6800EEEF4F /* NSDateExtension.h */,
 				46E1391814E47F6800EEEF4F /* NSDateExtension.m */,
-				4678542914DD9C5700F7CDF0 /* CalendarTest.h */,
-				4678542A14DD9C5700F7CDF0 /* CalendarTest.m */,
 				46E1391B14E482EE00EEEF4F /* WeatherTest.h */,
 				46E1391C14E482EE00EEEF4F /* WeatherTest.m */,
+				46F955CE14EDC19D00F9BF84 /* StopWatchTest.h */,
+				46F955CF14EDC19D00F9BF84 /* StopWatchTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -407,13 +407,13 @@
 				469B334014B42F420041CAF8 /* NSExceptionExtension.m in Sources */,
 				469B334114B42F420041CAF8 /* SourceCodeOpener.m in Sources */,
 				469B334A14B432260041CAF8 /* IUTAppDelegate.m in Sources */,
-				4678542714DD9C3C00F7CDF0 /* Calendar.m in Sources */,
-				4678542B14DD9C5700F7CDF0 /* CalendarTest.m in Sources */,
 				4678543114DD9C7300F7CDF0 /* IUTSurikae.m in Sources */,
 				4678543214DD9C7300F7CDF0 /* surikae.m in Sources */,
 				46E1391914E47F6800EEEF4F /* NSDateExtension.m in Sources */,
 				46E1391D14E482EE00EEEF4F /* WeatherTest.m in Sources */,
 				46E1392814E487A700EEEF4F /* Weather.m in Sources */,
+				46F955CC14EDC11B00F9BF84 /* StopWatch.m in Sources */,
+				46F955D014EDC19D00F9BF84 /* StopWatchTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
