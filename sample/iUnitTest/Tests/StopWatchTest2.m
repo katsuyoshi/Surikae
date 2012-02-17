@@ -62,6 +62,16 @@ static int hour, minute, second;
     ASSERT_EQUAL_DOUBLE(1.0, self.stopWatch.time);
 }
 
+- (void)timeShouldBe1SecondAfterMore1Scond
+{
+    hour = minute = second = 0;
+    [self.stopWatch start];
+    second = 1;
+    [self.stopWatch stop];
+    second = 2;
+    ASSERT_EQUAL_DOUBLE(1.0, self.stopWatch.time);
+}
+
 - (void)timeShouldBe1SecondEvneIfItsNotStopping
 {
     hour = minute = second = 0;

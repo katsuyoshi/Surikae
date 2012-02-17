@@ -55,6 +55,17 @@ static int hour, minute, second;
     ASSERT_EQUAL_DOUBLE(1.0, self.stopWatch.time);
 }
 
+- (void)timeShouldBe1SecondAfterMore1Scond
+{
+    [IUTSurikae surikaeWithClassMethod:@selector(date) originalClass:[NSDate class] mockClass:[self class]];
+    hour = minute = second = 0;
+    [self.stopWatch start];
+    second = 1;
+    [self.stopWatch stop];
+    second = 2;
+    ASSERT_EQUAL_DOUBLE(1.0, self.stopWatch.time);
+}
+
 - (void)timeShouldBe1SecondEvneIfItsNotStopping
 {
     [IUTSurikae surikaeWithClassMethod:@selector(date) originalClass:[NSDate class] mockClass:[self class]];
