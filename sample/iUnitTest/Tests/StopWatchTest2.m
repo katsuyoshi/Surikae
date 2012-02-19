@@ -10,6 +10,8 @@
 #import "NSDateExtension.h"
 #import "IUTSurikae.h"
 
+static int hour, minute, second;
+
 /* 
  * StopWatchTest2 is same as StopWatchTest.
  * When you setup Surikae at -setUp, test codes are more simple.
@@ -23,8 +25,9 @@
     [super setUp];
     
     // Don't forget to set global to YES
+    hour = minute = second = 0;
     [IUTSurikae surikaeWithClassMethod:@selector(date) originalClass:[NSDate class] mockClass:[self class] global:YES];
-    
+
     self.stopWatch = [StopWatch new];
 }
 
@@ -44,7 +47,6 @@
 #pragma mark -
 #pragma mark Helpers
 
-static int hour, minute, second;
 + (NSDate *)date
 {
     return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
@@ -55,7 +57,6 @@ static int hour, minute, second;
 
 - (void)timeShouldBe1Second
 {
-    hour = minute = second = 0;
     [self.stopWatch start];
     second = 1;
     [self.stopWatch stop];
@@ -64,7 +65,6 @@ static int hour, minute, second;
 
 - (void)timeShouldBe1SecondAfterMore1Scond
 {
-    hour = minute = second = 0;
     [self.stopWatch start];
     second = 1;
     [self.stopWatch stop];
@@ -74,7 +74,6 @@ static int hour, minute, second;
 
 - (void)timeShouldBe1SecondEvneIfItsNotStopping
 {
-    hour = minute = second = 0;
     [self.stopWatch start];
     second = 1;
     ASSERT_EQUAL_DOUBLE(1.0, self.stopWatch.time);
@@ -82,7 +81,6 @@ static int hour, minute, second;
 
 - (void)timeShouldBe1SecondEvenIfStartTwice
 {
-    hour = minute = second = 0;
     [self.stopWatch start];
     second = 1;
     [self.stopWatch start];
