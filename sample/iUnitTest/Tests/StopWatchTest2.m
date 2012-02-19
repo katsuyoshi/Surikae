@@ -24,8 +24,9 @@ static int hour, minute, second;
 {
     [super setUp];
     
-    // Don't forget to set global to YES
     hour = minute = second = 0;
+
+    // Don't forget to set global to YES
     [IUTSurikae surikaeWithClassMethod:@selector(date) originalClass:[NSDate class] mockClass:[self class] global:YES];
 
     self.stopWatch = [StopWatch new];
