@@ -1,33 +1,37 @@
 /*
-
-Copyright (c) 2012, ITO SOFT DESIGN Inc.
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without modification, 
-are permitted provided that the following conditions are met:
-
-    * Redistributions of source code must retain the above copyright notice,
-      this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above copyright notice,
-      this list of conditions and the following disclaimer in the documentation
-      and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
-EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
-OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
-SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
-INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
-OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER 
-IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING 
-IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
-OF SUCH DAMAGE.
-
-*/
+ 
+ Copyright (c) 2012, ITO SOFT DESIGN Inc.
+ All rights reserved.
+ 
+ Redistribution and use in source and binary forms, with or without modification, 
+ are permitted provided that the following conditions are met:
+ 
+ * Redistributions of source code must retain the above copyright notice,
+ this list of conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice,
+ this list of conditions and the following disclaimer in the documentation
+ and/or other materials provided with the distribution.
+ 
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+ EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+ SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+ INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER 
+ IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING 
+ IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+ OF SUCH DAMAGE.
+ 
+ */
 
 #import "IUTSurikae.h"
 
 @interface IUTSurikae()
+{
+    BOOL _isBlock;
+    void* _originalBlock;
+}
 + (void)registSurikae:(IUTSurikae *)surikae;
 + (void)unregistSurikae:(IUTSurikae *)surikae;
 @end
@@ -76,6 +80,15 @@ static NSMutableArray *surikaeKamen = nil;
 }
 
 
++ (IUTSurikae *)surikaeWithClassMethod:(SEL)method originalClass:(Class)originalClass block:(void*)block global:(BOOL)global
+{
+    IUTSurikae *surikae = [[[self alloc] initWithClassMethod:method originalClass:originalClass block:block] autorelease];
+    if (global) {
+        [[self class] registSurikae:surikae];
+    }
+    return surikae;
+}
+
 + (IUTSurikae *)surikaeWithClassMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass
 {
     return [self surikaeWithClassMethod:method originalClass:originalClass mockClass:mockClass global:NO];
@@ -117,12 +130,28 @@ static NSMutableArray *surikaeKamen = nil;
     return self;
 }
 
+- (id)initWithClassMethod:(SEL)method originalClass:(Class)originalClass block:(void*)block
+{
+    self = [self init];
+    if (self) {
+        _isBlock = YES;
+        _classMethod = YES;
+        _selector = method;
+        _originalClass = originalClass;
+        _originalBlock = surikaeClassMethodWithBlock([originalClass class], method, block);
+    }
+    return self;
+}
+
 - (void)dealloc
 {
-    if (_classMethod) {
+    
+    if (_classMethod && !_isBlock) {
         surikaeClassMethod(_originalClass, _mockClass, _selector);
-    } else {
+    } else if (!_classMethod && !_isBlock){
         surikaeInstanceMethod(_originalClass, _mockClass, _selector);
+    }else if (_classMethod && _isBlock){
+        surikaeClassMethodWithBlock([_originalClass class], _selector, _originalBlock);
     }
     [super dealloc];
 }

@@ -47,4 +47,5 @@ OF SUCH DAMAGE.
 - (id)initWithClassMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass;
 - (id)initWithInstanceMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass;
 
+- (id)initWithClassMethod:(SEL)method originalClass:(Class)originalClass block:(void*)block;
 @end
