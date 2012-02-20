@@ -61,7 +61,7 @@
         [self startAction:self];
     }
     
-    self.title = [[[NSBundle mainBundle] infoDictionary] valueForKey:kCFBundleNameKey];
+    self.title = [[[NSBundle mainBundle] infoDictionary] valueForKey:(NSString *)kCFBundleNameKey];
 }
 
 /*
