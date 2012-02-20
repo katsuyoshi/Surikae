@@ -67,7 +67,7 @@
 
 - (void)classFooShouldBeBarWithMockBlock
 {
-    IUTSurikae *surikae = [[IUTSurikae alloc] initWithClassMethod:@selector(foo) originalClass:[Foo class] block:^()
+    IUTSurikae *surikae = [[IUTSurikae alloc] initWithClassMethod:@selector(foo) class:[Foo class] block:^()
         {
             return @"Bar";
         }
@@ -76,7 +76,6 @@
     [surikae release];
     ASSERT_EQUAL(@"Foo", [Foo foo]);
 }
-
 
 
 
@@ -98,7 +97,7 @@
 
 - (void)instanceFooShouldBeBarWithMockBlock
 {
-    IUTSurikae *surikae = [[IUTSurikae alloc] initWithInstanceMethod:@selector(foo) originalClass:[Foo class] block:^()
+    IUTSurikae *surikae = [[IUTSurikae alloc] initWithInstanceMethod:@selector(foo) class:[Foo class] block:^()
         {
             return @"bar";
         }
@@ -109,6 +108,162 @@
     ASSERT_EQUAL(@"foo", [foo foo]);
 }
 
+
+#pragma mark - test class methods
+
+- (void)testSurikaeWithClassMethod
+{
+    [IUTSurikae surikaeWithClassMethod:@selector(foo) originalClass:[Foo class] mockClass:[self class]];
+    ASSERT_EQUAL(@"Bar", [Foo foo]);
+    // It will fail at the next test if the method was not retrieved.
+}
+
+- (void)testSurikaeWithInstanceMethod
+{
+    [IUTSurikae surikaeWithInstanceMethod:@selector(foo) originalClass:[Foo class] mockClass:[self class]];
+    Foo *foo = [[Foo new] autorelease];
+    ASSERT_EQUAL(@"bar", [foo foo]);
+    // It will fail at the next test if the method was not retrieved.
+}
+
+- (void)testSurikaeWithClassMethodWithBlock
+{
+   [IUTSurikae surikaeWithClassMethod:@selector(foo) class:[Foo class] block:^()
+        {
+            return @"Bar";
+        }
+    ];
+    ASSERT_EQUAL(@"Bar", [Foo foo]);
+    // It will fail at the next test if the method was not retrieved.
+}
+
+- (void)testSurikaeWithInstanceMethodWithBlock
+{
+   [IUTSurikae surikaeWithInstanceMethod:@selector(foo) class:[Foo class] block:^()
+        {
+            return @"bar";
+        }
+    ];
+    Foo *foo = [[Foo new] autorelease];
+    ASSERT_EQUAL(@"bar", [foo foo]);
+    // It will fail at the next test if the method was not retrieved.
+}
+
+
+- (void)testSurikaeWithClassMethodWithGlobalYES
+{
+    [IUTSurikae surikaeWithClassMethod:@selector(foo) originalClass:[Foo class] mockClass:[self class] global:YES];
+    ASSERT_EQUAL(@"Bar", [Foo foo]);
+    [IUTSurikae clearAll];
+    // It will fail at the next test if the method was not retrieved.
+}
+
+- (void)testSurikaeWithInstanceMethodWithGlobalYES
+{
+    [IUTSurikae surikaeWithInstanceMethod:@selector(foo) originalClass:[Foo class] mockClass:[self class] global:YES];
+    Foo *foo = [[Foo new] autorelease];
+    ASSERT_EQUAL(@"bar", [foo foo]);
+    [IUTSurikae clearAll];
+    // It will fail at the next test if the method was not retrieved.
+}
+
+- (void)testSurikaeWithClassMethodWithBlockGlobalYES
+{
+    [IUTSurikae surikaeWithClassMethod:@selector(foo) class:[Foo class] block:^()
+        {
+            return @"Bar";
+        }
+        global:YES
+    ];
+    ASSERT_EQUAL(@"Bar", [Foo foo]);
+    [IUTSurikae clearAll];
+    // It will fail at the next test if the method was not retrieved.
+}
+
+- (void)testSurikaeWithInstanceMethodWithBlockGlobalYES
+{
+    [IUTSurikae surikaeWithInstanceMethod:@selector(foo) class:[Foo class] block:^()
+        {
+            return @"bar";
+        }
+        global:YES
+    ];
+    Foo *foo = [[Foo new] autorelease];
+    ASSERT_EQUAL(@"bar", [foo foo]);
+    [IUTSurikae clearAll];
+    // It will fail at the next test if the method was not retrieved.
+}
+
+- (void)testRegistedSurikaeWithClassMethod
+{
+    [IUTSurikae registedSurikaeWithClassMethod:@selector(foo) originalClass:[Foo class] mockClass:[self class]];
+    ASSERT_EQUAL(@"Bar", [Foo foo]);
+    [IUTSurikae clearAll];
+    // It will fail at the next test if the method was not retrieved.
+}
+
+- (void)testRegistedSurikaeWithInstanceMethod
+{
+    [IUTSurikae surikaeWithInstanceMethod:@selector(foo) originalClass:[Foo class] mockClass:[self class]];
+    Foo *foo = [[Foo new] autorelease];
+    ASSERT_EQUAL(@"bar", [foo foo]);
+    [IUTSurikae clearAll];
+    // It will fail at the next test if the method was not retrieved.
+}
+
+- (void)testRegistedSurikaeWithClassMethodWithBlock
+{
+    [IUTSurikae registedSurikaeWithClassMethod:@selector(foo) class:[Foo class] block:^()
+        {
+            return @"Bar";
+        }
+    ];
+    ASSERT_EQUAL(@"Bar", [Foo foo]);
+    [IUTSurikae clearAll];
+    // It will fail at the next test if the method was not retrieved.
+}
+
+- (void)testRegistedSurikaeWithInstanceMethodWithBlock
+{
+    [IUTSurikae registedSurikaeWithInstanceMethod:@selector(foo) class:[Foo class] block:^()
+        {
+            return @"bar";
+        }
+    ];
+    Foo *foo = [[Foo new] autorelease];
+    ASSERT_EQUAL(@"bar", [foo foo]);
+    [IUTSurikae clearAll];
+    // It will fail at the next test if the method was not retrieved.
+}
+
+#pragma mark - convenience class methods
+
+- (void)testSurikaeWithClassMethodWithLocalBlock
+{
+    [IUTSurikae surikaeWithClassMethod:@selector(foo) class:[Foo class] surikae:^()
+        {
+            return @"Bar";
+        }
+        context:^() {
+            ASSERT_EQUAL(@"Bar", [Foo foo]);
+        }
+    ];
+    ASSERT_EQUAL(@"Foo", [Foo foo]);
+}
+
+- (void)testSurikaeWithLocalMethodWithLocalBlock
+{
+    [IUTSurikae surikaeWithInstanceMethod:@selector(foo) class:[Foo class] surikae:^()
+        {
+            return @"bar";
+        }
+        context:^() {
+            Foo *foo = [[Foo new] autorelease];
+            ASSERT_EQUAL(@"bar", [foo foo]);
+        }
+    ];
+    ASSERT_EQUAL(@"Foo", [Foo foo]);
+}
 
 
 #pragma mark -
