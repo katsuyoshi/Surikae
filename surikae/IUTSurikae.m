@@ -27,17 +27,22 @@
 
 #import "IUTSurikae.h"
 
+typedef enum {
+    IUTSurikaeTypeClassMethod,
+    IUTSurikaeTypeInstanceMethod,
+    IUTSurikaeTypeClassMethodWithBlock,
+    IUTSurikaeTypeInstanceMethodWithBlock
+} IUTSurikaeType;
+    
+
 @interface IUTSurikae()
 {
-    BOOL _isBlock;
-    void *_originalBlock;
+    IUTSurikaeType _type;
+    Class _originalClass;
+    Class _mockClass;
+    IMP _originalIMP;
+    SEL _selector;
 }
-
-@property (readonly, getter = isClassMethod) BOOL classMethod;
-@property (readonly) Class originalClass;
-@property (readonly) Class mockClass;
-@property (readonly) IMP originalIMP;
-@property (readonly) SEL selector;
 
 + (void)registSurikae:(IUTSurikae *)surikae;
 + (void)unregistSurikae:(IUTSurikae *)surikae;
@@ -45,12 +50,6 @@
 
 
 @implementation IUTSurikae
-
-@synthesize classMethod = _classMethod;
-@synthesize originalClass = _originalClass;
-@synthesize mockClass = _mockClass;
-@synthesize originalIMP = _originalIMP;
-@synthesize selector = _selector;
 
 static NSMutableArray *surikaeKamen = nil;
 
@@ -117,7 +116,7 @@ static NSMutableArray *surikaeKamen = nil;
 {
     self = [self init];
     if (self) {
-        _classMethod = YES;
+        _type = IUTSurikaeTypeClassMethod;
         _selector = method;
         _originalClass = originalClass;
         _mockClass = mockClass;
@@ -130,6 +129,7 @@ static NSMutableArray *surikaeKamen = nil;
 {
     self = [self init];
     if (self) {
+        _type = IUTSurikaeTypeInstanceMethod;
         _selector = method;
         _originalClass = originalClass;
         _mockClass = mockClass;
@@ -142,8 +142,7 @@ static NSMutableArray *surikaeKamen = nil;
 {
     self = [self init];
     if (self) {
-        _isBlock = YES;
-        _classMethod = YES;
+        _type = IUTSurikaeTypeClassMethodWithBlock;
         _selector = method;
         _originalClass = originalClass;
         _originalIMP = surikaeClassMethodWithBlock([originalClass class], method, block);
@@ -155,8 +154,7 @@ static NSMutableArray *surikaeKamen = nil;
 {
     self = [self init];
     if (self) {
-        _isBlock = YES;
-        _classMethod = NO;
+        _type = IUTSurikaeTypeInstanceMethodWithBlock;
         _selector = method;
         _originalClass = originalClass;
         _originalIMP = surikaeInstanceMethodWithBlock([originalClass class], method, block);
@@ -166,20 +164,20 @@ static NSMutableArray *surikaeKamen = nil;
 
 - (void)dealloc
 {
-    if (_isBlock) {
-        if (_classMethod) {
-            surikaeRetrieveClassMethodWithImp(_originalClass, _selector, _originalIMP);
-        } else {
-            surikaeRetrieveInstanceMethodWithImp(_originalClass, _selector, _originalIMP);
-        }
-    } else {
-        if (_classMethod) {
-            surikaeClassMethod(_originalClass, _mockClass, _selector);
-        } else {
-            surikaeInstanceMethod(_originalClass, _mockClass, _selector);
-        }
-    }
-    
+    switch (_type) {
+    case IUTSurikaeTypeClassMethod:
+        surikaeClassMethod(_originalClass, _mockClass, _selector);
+        break;
+    case IUTSurikaeTypeInstanceMethod:
+        surikaeInstanceMethod(_originalClass, _mockClass, _selector);
+        break;
+    case IUTSurikaeTypeClassMethodWithBlock:
+        surikaeRetrieveClassMethodWithImp(_originalClass, _selector, _originalIMP);
+        break;
+    case IUTSurikaeTypeInstanceMethodWithBlock:
+        surikaeRetrieveInstanceMethodWithImp(_originalClass, _selector, _originalIMP);
+        break;
+    }    
     [super dealloc];
 }
 
