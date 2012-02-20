@@ -31,6 +31,17 @@
 void surikaeClassMethod(Class originalClass, Class mockClass, SEL selector);
 void surikaeInstanceMethod(Class originalClass, Class mockClass, SEL selector);
 
-void* surikaeClassMethodWithBlock(Class originalClass, SEL selector, void *block);
 
-void* surikaeInstanceMethodWithBlock(Class originalClass, SEL selector, void *block);
+#pragma mark - with blocks
+
+/**
+ * @return original implementation
+ */
+IMP surikaeClassMethodWithBlock(Class klass, SEL selector, void *block);
+void surikaeRetrieveClassMethodWithImp(Class klass, SEL selector, IMP originalImp);
+
+/**
+ * @return original implementation
+ */
+IMP surikaeInstanceMethodWithBlock(Class klass, SEL selector, void *block);
+void surikaeRetrieveInstanceMethodWithImp(Class klass, SEL selector, IMP originalImp);

@@ -31,11 +31,6 @@ OF SUCH DAMAGE.
 
 @interface IUTSurikae : NSObject
 
-@property (readonly, getter = isClassMethod) BOOL classMethod;
-@property (readonly) Class originalClass;
-@property (readonly) Class mockClass;
-@property (readonly) SEL selector;
-
 + (IUTSurikae *)surikaeWithClassMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass;
 + (IUTSurikae *)surikaeWithInstanceMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass;
 
@@ -47,5 +42,7 @@ OF SUCH DAMAGE.
 - (id)initWithClassMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass;
 - (id)initWithInstanceMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass;
 
-- (id)initWithClassMethod:(SEL)method originalClass:(Class)originalClass block:(void*)block;
+- (id)initWithClassMethod:(SEL)method originalClass:(Class)originalClass block:(void *)block;
+- (id)initWithInstanceMethod:(SEL)method originalClass:(Class)originalClass block:(void *)block;
+
 @end

@@ -30,8 +30,15 @@
 @interface IUTSurikae()
 {
     BOOL _isBlock;
-    void* _originalBlock;
+    void *_originalBlock;
 }
+
+@property (readonly, getter = isClassMethod) BOOL classMethod;
+@property (readonly) Class originalClass;
+@property (readonly) Class mockClass;
+@property (readonly) IMP originalIMP;
+@property (readonly) SEL selector;
+
 + (void)registSurikae:(IUTSurikae *)surikae;
 + (void)unregistSurikae:(IUTSurikae *)surikae;
 @end
@@ -42,6 +49,7 @@
 @synthesize classMethod = _classMethod;
 @synthesize originalClass = _originalClass;
 @synthesize mockClass = _mockClass;
+@synthesize originalIMP = _originalIMP;
 @synthesize selector = _selector;
 
 static NSMutableArray *surikaeKamen = nil;
@@ -130,7 +138,7 @@ static NSMutableArray *surikaeKamen = nil;
     return self;
 }
 
-- (id)initWithClassMethod:(SEL)method originalClass:(Class)originalClass block:(void*)block
+- (id)initWithClassMethod:(SEL)method originalClass:(Class)originalClass block:(void *)block
 {
     self = [self init];
     if (self) {
@@ -138,21 +146,40 @@ static NSMutableArray *surikaeKamen = nil;
         _classMethod = YES;
         _selector = method;
         _originalClass = originalClass;
-        _originalBlock = surikaeClassMethodWithBlock([originalClass class], method, block);
+        _originalIMP = surikaeClassMethodWithBlock([originalClass class], method, block);
+    }
+    return self;
+}
+
+- (id)initWithInstanceMethod:(SEL)method originalClass:(Class)originalClass block:(void *)block
+{
+    self = [self init];
+    if (self) {
+        _isBlock = YES;
+        _classMethod = NO;
+        _selector = method;
+        _originalClass = originalClass;
+        _originalIMP = surikaeInstanceMethodWithBlock([originalClass class], method, block);
     }
     return self;
 }
 
 - (void)dealloc
 {
-    
-    if (_classMethod && !_isBlock) {
-        surikaeClassMethod(_originalClass, _mockClass, _selector);
-    } else if (!_classMethod && !_isBlock){
-        surikaeInstanceMethod(_originalClass, _mockClass, _selector);
-    }else if (_classMethod && _isBlock){
-        surikaeClassMethodWithBlock([_originalClass class], _selector, _originalBlock);
+    if (_isBlock) {
+        if (_classMethod) {
+            surikaeRetrieveClassMethodWithImp(_originalClass, _selector, _originalIMP);
+        } else {
+            surikaeRetrieveInstanceMethodWithImp(_originalClass, _selector, _originalIMP);
+        }
+    } else {
+        if (_classMethod) {
+            surikaeClassMethod(_originalClass, _mockClass, _selector);
+        } else {
+            surikaeInstanceMethod(_originalClass, _mockClass, _selector);
+        }
     }
+    
     [super dealloc];
 }
 

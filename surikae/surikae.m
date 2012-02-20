@@ -55,29 +55,46 @@ void surikaeInstanceMethod(Class originalClass, Class mockClass, SEL selector)
     }
 }
 
-void* surikaeClassMethodWithBlock(Class originalClass, SEL selector, void* block)
+IMP surikaeClassMethodWithBlock(Class klass, SEL selector, void *block)
 {
-    Method orgMethod = class_getClassMethod(originalClass, selector);
-    
-    if (orgMethod && block) {
-        IMP tmpIMP;
-        void* orgBlock = imp_getBlock(method_getImplementation(orgMethod));
-        tmpIMP = imp_implementationWithBlock(block);
-        method_setImplementation(orgMethod, tmpIMP);
-        return orgBlock;
+    Method method = class_getClassMethod(klass, selector);
+    IMP imp = method_getImplementation(method);
+    if (block) {
+        method_setImplementation(method, imp_implementationWithBlock(block));
     }
-    return NULL;
+    return imp;
 }
 
-void* surikaeInstanceMethodWithBlock(Class originalClass, SEL selector,void* block)
+void surikaeRetrieveClassMethodWithImp(Class klass, SEL selector, IMP originalImp)
 {
-    Method orgMethod = class_getInstanceMethod(originalClass, selector);
-    if (orgMethod && block) {
-        IMP tmpIMP;
-        void* orgBlock = imp_getBlock(method_getImplementation(orgMethod));
-        tmpIMP = imp_implementationWithBlock(block);
-        method_setImplementation(orgMethod, tmpIMP);
-        return orgBlock;
+    Method method = class_getClassMethod(klass, selector);
+    void *block = imp_getBlock(method_getImplementation(method));
+    if (block) {
+        imp_removeBlock(block);
     }
-    return NULL;
+    method_setImplementation(method, originalImp);
 }
+
+
+IMP surikaeInstanceMethodWithBlock(Class klass, SEL selector, void *block)
+{
+    Method method = class_getInstanceMethod(klass, selector);
+    IMP imp = method_getImplementation(method);
+    if (block) {
+        method_setImplementation(method, imp_implementationWithBlock(block));
+    }
+    return imp;
+}
+
+void surikaeRetrieveInstanceMethodWithImp(Class klass, SEL selector, IMP originalImp)
+{
+    Method method = class_getInstanceMethod(klass, selector);
+    void *block = imp_getBlock(method_getImplementation(method));
+    if (block) {
+        imp_removeBlock(block);
+    }
+    method_setImplementation(method, originalImp);
+}
+
+
+
