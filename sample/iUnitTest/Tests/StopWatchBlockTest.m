@@ -39,18 +39,19 @@
 - (void)timeShouldBe1Second
 {
     __block int second = 0;
-    NSDate* (^block)() = ^NSDate* (){ 
-        return [NSDate dateWithYear:2012 month:2 day:17 hour:0 minute:0 second:second];
-    };
-    
-    [[[IUTSurikae alloc] initWithClassMethod:@selector(date) originalClass:[NSDate class] block:block] autorelease];
-    [self.stopWatch start];
-    
-    second = 1;
-    
-    [self.stopWatch stop];
-    
-    ASSERT_EQUAL_DOUBLE(1.0, self.stopWatch.time);
+ 
+    [IUTSurikae surikaeWithClassMethod:@selector(date) class:[NSDate class] surikae:^()
+        {
+            return [NSDate dateWithYear:2012 month:2 day:17 hour:0 minute:0 second:second];
+        }
+     context:^()
+        {
+            [self.stopWatch start];
+            second = 1;
+            [self.stopWatch stop];
+            ASSERT_EQUAL_DOUBLE(1.0, self.stopWatch.time);
+        }
+     ];
 }
 
 
