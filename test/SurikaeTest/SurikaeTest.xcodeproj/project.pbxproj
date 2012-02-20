@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4678543114DD9C7300F7CDF0 /* IUTSurikae.m in Sources */ = {isa = PBXBuildFile; fileRef = 4678542E14DD9C7300F7CDF0 /* IUTSurikae.m */; };
-		4678543214DD9C7300F7CDF0 /* surikae.m in Sources */ = {isa = PBXBuildFile; fileRef = 4678543014DD9C7300F7CDF0 /* surikae.m */; };
+		4689540814F1335F00E09B99 /* IUTSurikae.m in Sources */ = {isa = PBXBuildFile; fileRef = 4689540514F1335F00E09B99 /* IUTSurikae.m */; };
+		4689540914F1335F00E09B99 /* surikae.m in Sources */ = {isa = PBXBuildFile; fileRef = 4689540714F1335F00E09B99 /* surikae.m */; };
+		4689540D14F1337900E09B99 /* IUTSurikaeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4689540C14F1337900E09B99 /* IUTSurikaeTest.m */; };
+		4689541014F1415E00E09B99 /* Foo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4689540F14F1415E00E09B99 /* Foo.m */; };
 		469B32D614B42CFF0041CAF8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469B32D514B42CFF0041CAF8 /* UIKit.framework */; };
 		469B32D814B42CFF0041CAF8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469B32D714B42CFF0041CAF8 /* Foundation.framework */; };
 		469B32DA14B42CFF0041CAF8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469B32D914B42CFF0041CAF8 /* CoreGraphics.framework */; };
@@ -43,28 +45,25 @@
 		469B334114B42F420041CAF8 /* SourceCodeOpener.m in Sources */ = {isa = PBXBuildFile; fileRef = 469B332514B42F420041CAF8 /* SourceCodeOpener.m */; };
 		469B334714B431B00041CAF8 /* IUTMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 469B334614B431B00041CAF8 /* IUTMainWindow.xib */; };
 		469B334A14B432260041CAF8 /* IUTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 469B334914B432250041CAF8 /* IUTAppDelegate.m */; };
-		46E1391914E47F6800EEEF4F /* NSDateExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E1391814E47F6800EEEF4F /* NSDateExtension.m */; };
-		46E1391D14E482EE00EEEF4F /* WeatherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E1391C14E482EE00EEEF4F /* WeatherTest.m */; };
-		46E1392814E487A700EEEF4F /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E1392714E487A700EEEF4F /* Weather.m */; };
-		46F955CC14EDC11B00F9BF84 /* StopWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F955CB14EDC11B00F9BF84 /* StopWatch.m */; };
-		46F955D014EDC19D00F9BF84 /* StopWatchTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F955CF14EDC19D00F9BF84 /* StopWatchTest.m */; };
-		46F955D614EDCB1200F9BF84 /* StopWatchTest2.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F955D514EDCB1200F9BF84 /* StopWatchTest2.m */; };
-		DA6871BE14F0CE2800C8A2DF /* StopWatchBlockTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6871BD14F0CE2800C8A2DF /* StopWatchBlockTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4678542D14DD9C7300F7CDF0 /* IUTSurikae.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUTSurikae.h; sourceTree = "<group>"; };
-		4678542E14DD9C7300F7CDF0 /* IUTSurikae.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IUTSurikae.m; sourceTree = "<group>"; };
-		4678542F14DD9C7300F7CDF0 /* surikae.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = surikae.h; sourceTree = "<group>"; };
-		4678543014DD9C7300F7CDF0 /* surikae.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = surikae.m; sourceTree = "<group>"; };
-		469B32D114B42CFF0041CAF8 /* sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4689540414F1335F00E09B99 /* IUTSurikae.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUTSurikae.h; sourceTree = "<group>"; };
+		4689540514F1335F00E09B99 /* IUTSurikae.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IUTSurikae.m; sourceTree = "<group>"; };
+		4689540614F1335F00E09B99 /* surikae.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = surikae.h; sourceTree = "<group>"; };
+		4689540714F1335F00E09B99 /* surikae.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = surikae.m; sourceTree = "<group>"; };
+		4689540B14F1337900E09B99 /* IUTSurikaeTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUTSurikaeTest.h; sourceTree = "<group>"; };
+		4689540C14F1337900E09B99 /* IUTSurikaeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IUTSurikaeTest.m; sourceTree = "<group>"; };
+		4689540E14F1415E00E09B99 /* Foo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
+		4689540F14F1415E00E09B99 /* Foo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Foo.m; sourceTree = "<group>"; };
+		469B32D114B42CFF0041CAF8 /* SurikaeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurikaeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		469B32D514B42CFF0041CAF8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		469B32D714B42CFF0041CAF8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		469B32D914B42CFF0041CAF8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		469B32DD14B42CFF0041CAF8 /* sample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "sample-Info.plist"; sourceTree = "<group>"; };
+		469B32DD14B42CFF0041CAF8 /* SurikaeTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SurikaeTest-Info.plist"; sourceTree = "<group>"; };
 		469B32DF14B42CFF0041CAF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		469B32E114B42CFF0041CAF8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		469B32E314B42CFF0041CAF8 /* sample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "sample-Prefix.pch"; sourceTree = "<group>"; };
+		469B32E314B42CFF0041CAF8 /* SurikaeTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SurikaeTest-Prefix.pch"; sourceTree = "<group>"; };
 		469B32F114B42F420041CAF8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		469B32F214B42F420041CAF8 /* isd_logo_60x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = isd_logo_60x40.png; sourceTree = "<group>"; };
 		469B32F314B42F420041CAF8 /* isd_logo_60x40_w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = isd_logo_60x40_w.png; sourceTree = "<group>"; };
@@ -119,20 +118,6 @@
 		469B334614B431B00041CAF8 /* IUTMainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IUTMainWindow.xib; sourceTree = "<group>"; };
 		469B334814B432250041CAF8 /* IUTAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUTAppDelegate.h; sourceTree = "<group>"; };
 		469B334914B432250041CAF8 /* IUTAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IUTAppDelegate.m; sourceTree = "<group>"; };
-		46E1391714E47F6800EEEF4F /* NSDateExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateExtension.h; sourceTree = "<group>"; };
-		46E1391814E47F6800EEEF4F /* NSDateExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateExtension.m; sourceTree = "<group>"; };
-		46E1391B14E482EE00EEEF4F /* WeatherTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherTest.h; sourceTree = "<group>"; };
-		46E1391C14E482EE00EEEF4F /* WeatherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherTest.m; sourceTree = "<group>"; };
-		46E1392614E487A700EEEF4F /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weather.h; sourceTree = "<group>"; };
-		46E1392714E487A700EEEF4F /* Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Weather.m; sourceTree = "<group>"; };
-		46F955CA14EDC11B00F9BF84 /* StopWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopWatch.h; sourceTree = "<group>"; };
-		46F955CB14EDC11B00F9BF84 /* StopWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopWatch.m; sourceTree = "<group>"; };
-		46F955CE14EDC19D00F9BF84 /* StopWatchTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopWatchTest.h; sourceTree = "<group>"; };
-		46F955CF14EDC19D00F9BF84 /* StopWatchTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopWatchTest.m; sourceTree = "<group>"; };
-		46F955D414EDCB1200F9BF84 /* StopWatchTest2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopWatchTest2.h; sourceTree = "<group>"; };
-		46F955D514EDCB1200F9BF84 /* StopWatchTest2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopWatchTest2.m; sourceTree = "<group>"; };
-		DA6871BC14F0CE2800C8A2DF /* StopWatchBlockTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopWatchBlockTest.h; sourceTree = "<group>"; };
-		DA6871BD14F0CE2800C8A2DF /* StopWatchBlockTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopWatchBlockTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,16 +134,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4678542C14DD9C7300F7CDF0 /* surikae */ = {
+		4689540314F1335F00E09B99 /* surikae */ = {
 			isa = PBXGroup;
 			children = (
-				4678542D14DD9C7300F7CDF0 /* IUTSurikae.h */,
-				4678542E14DD9C7300F7CDF0 /* IUTSurikae.m */,
-				4678542F14DD9C7300F7CDF0 /* surikae.h */,
-				4678543014DD9C7300F7CDF0 /* surikae.m */,
+				4689540414F1335F00E09B99 /* IUTSurikae.h */,
+				4689540514F1335F00E09B99 /* IUTSurikae.m */,
+				4689540614F1335F00E09B99 /* surikae.h */,
+				4689540714F1335F00E09B99 /* surikae.m */,
 			);
 			name = surikae;
-			path = ../../surikae;
+			path = ../../../../surikae;
 			sourceTree = "<group>";
 		};
 		469B32C614B42CFF0041CAF8 = {
@@ -173,7 +158,7 @@
 		469B32D214B42CFF0041CAF8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				469B32D114B42CFF0041CAF8 /* sample.app */,
+				469B32D114B42CFF0041CAF8 /* SurikaeTest.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -192,7 +177,6 @@
 		469B32DB14B42CFF0041CAF8 /* iUnitTest */ = {
 			isa = PBXGroup;
 			children = (
-				4678542C14DD9C7300F7CDF0 /* surikae */,
 				469B334F14B438710041CAF8 /* Classes */,
 				469B335114B438710041CAF8 /* Tests */,
 				469B32DC14B42CFF0041CAF8 /* Supporting Files */,
@@ -203,10 +187,10 @@
 		469B32DC14B42CFF0041CAF8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				469B32DD14B42CFF0041CAF8 /* sample-Info.plist */,
+				469B32DD14B42CFF0041CAF8 /* SurikaeTest-Info.plist */,
 				469B32DE14B42CFF0041CAF8 /* InfoPlist.strings */,
 				469B32E114B42CFF0041CAF8 /* main.m */,
-				469B32E314B42CFF0041CAF8 /* sample-Prefix.pch */,
+				469B32E314B42CFF0041CAF8 /* SurikaeTest-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -300,10 +284,7 @@
 		469B334F14B438710041CAF8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				46E1392614E487A700EEEF4F /* Weather.h */,
-				46E1392714E487A700EEEF4F /* Weather.m */,
-				46F955CA14EDC11B00F9BF84 /* StopWatch.h */,
-				46F955CB14EDC11B00F9BF84 /* StopWatch.m */,
+				4689540314F1335F00E09B99 /* surikae */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -311,16 +292,10 @@
 		469B335114B438710041CAF8 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				46E1391714E47F6800EEEF4F /* NSDateExtension.h */,
-				46E1391814E47F6800EEEF4F /* NSDateExtension.m */,
-				46E1391B14E482EE00EEEF4F /* WeatherTest.h */,
-				46E1391C14E482EE00EEEF4F /* WeatherTest.m */,
-				DA6871BC14F0CE2800C8A2DF /* StopWatchBlockTest.h */,
-				DA6871BD14F0CE2800C8A2DF /* StopWatchBlockTest.m */,
-				46F955CE14EDC19D00F9BF84 /* StopWatchTest.h */,
-				46F955CF14EDC19D00F9BF84 /* StopWatchTest.m */,
-				46F955D414EDCB1200F9BF84 /* StopWatchTest2.h */,
-				46F955D514EDCB1200F9BF84 /* StopWatchTest2.m */,
+				4689540B14F1337900E09B99 /* IUTSurikaeTest.h */,
+				4689540C14F1337900E09B99 /* IUTSurikaeTest.m */,
+				4689540E14F1415E00E09B99 /* Foo.h */,
+				4689540F14F1415E00E09B99 /* Foo.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -328,9 +303,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		469B32D014B42CFF0041CAF8 /* sample */ = {
+		469B32D014B42CFF0041CAF8 /* SurikaeTest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 469B32E914B42CFF0041CAF8 /* Build configuration list for PBXNativeTarget "sample" */;
+			buildConfigurationList = 469B32E914B42CFF0041CAF8 /* Build configuration list for PBXNativeTarget "SurikaeTest" */;
 			buildPhases = (
 				469B32CD14B42CFF0041CAF8 /* Sources */,
 				469B32CE14B42CFF0041CAF8 /* Frameworks */,
@@ -340,9 +315,9 @@
 			);
 			dependencies = (
 			);
-			name = sample;
+			name = SurikaeTest;
 			productName = iUnitTest;
-			productReference = 469B32D114B42CFF0041CAF8 /* sample.app */;
+			productReference = 469B32D114B42CFF0041CAF8 /* SurikaeTest.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -354,7 +329,7 @@
 				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "ITO SOFT DESIGN Inc.";
 			};
-			buildConfigurationList = 469B32CB14B42CFF0041CAF8 /* Build configuration list for PBXProject "sample" */;
+			buildConfigurationList = 469B32CB14B42CFF0041CAF8 /* Build configuration list for PBXProject "SurikaeTest" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -366,7 +341,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				469B32D014B42CFF0041CAF8 /* sample */,
+				469B32D014B42CFF0041CAF8 /* SurikaeTest */,
 			);
 		};
 /* End PBXProject section */
@@ -417,15 +392,10 @@
 				469B334014B42F420041CAF8 /* NSExceptionExtension.m in Sources */,
 				469B334114B42F420041CAF8 /* SourceCodeOpener.m in Sources */,
 				469B334A14B432260041CAF8 /* IUTAppDelegate.m in Sources */,
-				4678543114DD9C7300F7CDF0 /* IUTSurikae.m in Sources */,
-				4678543214DD9C7300F7CDF0 /* surikae.m in Sources */,
-				46E1391914E47F6800EEEF4F /* NSDateExtension.m in Sources */,
-				46E1391D14E482EE00EEEF4F /* WeatherTest.m in Sources */,
-				46E1392814E487A700EEEF4F /* Weather.m in Sources */,
-				46F955CC14EDC11B00F9BF84 /* StopWatch.m in Sources */,
-				46F955D014EDC19D00F9BF84 /* StopWatchTest.m in Sources */,
-				46F955D614EDCB1200F9BF84 /* StopWatchTest2.m in Sources */,
-				DA6871BE14F0CE2800C8A2DF /* StopWatchBlockTest.m in Sources */,
+				4689540814F1335F00E09B99 /* IUTSurikae.m in Sources */,
+				4689540914F1335F00E09B99 /* surikae.m in Sources */,
+				4689540D14F1337900E09B99 /* IUTSurikaeTest.m in Sources */,
+				4689541014F1415E00E09B99 /* Foo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,9 +460,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iUnitTest/sample-Prefix.pch";
-				INFOPLIST_FILE = "iUnitTest/sample-Info.plist";
-				PRODUCT_NAME = sample;
+				GCC_PREFIX_HEADER = "iUnitTest/SurikaeTest-Prefix.pch";
+				INFOPLIST_FILE = "iUnitTest/SurikaeTest-Info.plist";
+				PRODUCT_NAME = SurikaeTest;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -501,9 +471,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iUnitTest/sample-Prefix.pch";
-				INFOPLIST_FILE = "iUnitTest/sample-Info.plist";
-				PRODUCT_NAME = sample;
+				GCC_PREFIX_HEADER = "iUnitTest/SurikaeTest-Prefix.pch";
+				INFOPLIST_FILE = "iUnitTest/SurikaeTest-Info.plist";
+				PRODUCT_NAME = SurikaeTest;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -511,7 +481,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		469B32CB14B42CFF0041CAF8 /* Build configuration list for PBXProject "sample" */ = {
+		469B32CB14B42CFF0041CAF8 /* Build configuration list for PBXProject "SurikaeTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				469B32E714B42CFF0041CAF8 /* Debug */,
@@ -520,7 +490,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		469B32E914B42CFF0041CAF8 /* Build configuration list for PBXNativeTarget "sample" */ = {
+		469B32E914B42CFF0041CAF8 /* Build configuration list for PBXNativeTarget "SurikaeTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				469B32EA14B42CFF0041CAF8 /* Debug */,

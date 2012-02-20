@@ -26,16 +26,17 @@ static int hour, minute, second;
     
     hour = minute = second = 0;
 
-    // Don't forget to set global to YES
-    [IUTSurikae surikaeWithClassMethod:@selector(date) originalClass:[NSDate class] mockClass:[self class] global:YES];
-
+    [IUTSurikae registedSurikaeWithClassMethod:@selector(date) originalClass:[NSDate class] mockClass:[self class]];
+    
     self.stopWatch = [StopWatch new];
 }
 
 - (void)tearDown
 {
     self.stopWatch = nil;
+    
     [IUTSurikae clearAll];
+    
     [super tearDown];
 }
 
