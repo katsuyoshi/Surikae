@@ -62,3 +62,8 @@ Please see a sample project’s CalenderTest and WeatherTest.
 LICENCE  
 =
 BSD Licence
+
+
+Thanks
+=
+hayashi311: implementation blocks
