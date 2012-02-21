@@ -19,14 +19,10 @@
 @synthesize weather = _weather;
 @synthesize request = _request;
 
-static id _delegate = nil;
-
 - (void)setUp
 {
     [super setUp];
-    
-    _delegate = self;
-    
+        
     [IUTSurikae registedSurikaeWithClassName:@"NSURLConnection" methodName:@"+connectionWithRequest:delegate:" surikae:^(id object, NSURLRequest *request, id delegate) {
         self.request = request;
         // return NSURLConnection which isn't starting to connect.
@@ -49,20 +45,6 @@ static id _delegate = nil;
 {
     [super dealloc];
 }
-
-- (NSURLConnection *)connectionWithRequest:(NSURLRequest *)request delegate:(id)delegate
-{
-    self.request = request;
-    // return NSURLConnection which isn't starting to connect.
-    return [[[NSURLConnection alloc] initWithRequest:request delegate:delegate startImmediately:NO] autorelease];
-}
-
-+ (NSURLConnection *)connectionWithRequest:(NSURLRequest *)request delegate:(id)delegate
-{
-    return [_delegate connectionWithRequest:request delegate:delegate];
-}
-
-
 
 #pragma mark -
 #pragma mark Helpers
