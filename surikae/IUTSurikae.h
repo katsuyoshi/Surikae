@@ -33,24 +33,17 @@ OF SUCH DAMAGE.
 
 #pragma mark - get local instance
 
-+ (IUTSurikae *)surikaeWithClassMethod:(SEL)method class:(Class)class block:(void *)block;
-+ (IUTSurikae *)surikaeWithInstanceMethod:(SEL)method class:(Class)class block:(void *)block;
-
 + (void)surikaeWithClassName:(NSString *)className methodName:(NSString *)methodName surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock;
 
 #pragma mark - get instance with global flag
 
-+ (IUTSurikae *)registedSurikaeWithClassMethod:(SEL)method class:(Class)class block:(void *)block;
-+ (IUTSurikae *)registedSurikaeWithInstanceMethod:(SEL)method class:(Class)class block:(void *)block;
++ (IUTSurikae *)registedSurikaeWithClassName:(NSString *)className methodName:(NSString *)methodName surikae:(void *)surikaeBlock;
 
 #pragma mark - revert
 
 + (void)clearAll;
 
 #pragma mark - initialize instance
-
-- (id)initWithClassMethod:(SEL)method class:(Class)class block:(void *)block;
-- (id)initWithInstanceMethod:(SEL)method class:(Class)class block:(void *)block;
 
 - (id)initWithClassName:(NSString *)className methodName:(NSString *)methodName block:(void *)block;
 

@@ -65,21 +65,9 @@
 
 #pragma mark - test class methods
 
-- (void)testRegistedSurikaeWithClassMethodWithBlock
+- (void)testRegistedSurikaeWithClassNameMethodNameWithBlock
 {
-    [IUTSurikae registedSurikaeWithClassMethod:@selector(foo) class:[Foo class] block:^()
-        {
-            return @"Bar";
-        }
-    ];
-    ASSERT_EQUAL(@"Bar", [Foo foo]);
-    [IUTSurikae clearAll];
-    // It will fail at the next test if the method was not retrieved.
-}
-
-- (void)testRegistedSurikaeWithInstanceMethodWithBlock
-{
-    [IUTSurikae registedSurikaeWithInstanceMethod:@selector(foo) class:[Foo class] block:^()
+    [IUTSurikae registedSurikaeWithClassName:@"Foo" methodName:@"foo" surikae:^()
         {
             return @"bar";
         }

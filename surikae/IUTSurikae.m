@@ -43,6 +43,10 @@ typedef enum {
 
 + (void)registSurikae:(IUTSurikae *)surikae;
 + (void)unregistSurikae:(IUTSurikae *)surikae;
+
+- (id)initWithClassMethod:(SEL)method class:(Class)class block:(void *)block;
+- (id)initWithInstanceMethod:(SEL)method class:(Class)class block:(void *)block;
+
 @end
 
 
@@ -69,20 +73,12 @@ static NSMutableArray *surikaeKamen = nil;
 
 #pragma mark - get instance with global flag
 
-+ (IUTSurikae *)registedSurikaeWithClassMethod:(SEL)method class:(Class)class block:(void *)block
++ (IUTSurikae *)registedSurikaeWithClassName:(NSString *)className methodName:(NSString *)methodName surikae:(void *)surikaeBlock
 {
-    IUTSurikae *surikae = [[[self alloc] initWithClassMethod:method class:class block:block] autorelease];
+    IUTSurikae *surikae = [[[self alloc] initWithClassName:className methodName:methodName block:surikaeBlock] autorelease];
     [self registSurikae:surikae];
     return surikae;
 }
-
-+ (IUTSurikae *)registedSurikaeWithInstanceMethod:(SEL)method class:(Class)class block:(void *)block
-{
-    IUTSurikae *surikae = [[[self alloc] initWithInstanceMethod:method class:class block:block] autorelease];
-    [self registSurikae:surikae];
-    return surikae;
-}
-
 
 
 #pragma mark - get local instance
@@ -97,6 +93,13 @@ static NSMutableArray *surikaeKamen = nil;
     return [[[self alloc] initWithInstanceMethod:method class:class block:block] autorelease];
 }
 
++ (void)surikaeWithClassName:(NSString *)className methodName:(NSString *)methodName surikae:(void *)surikaeBlock
+{
+    IUTSurikae *surikae = [[self alloc] initWithClassName:className methodName:methodName block:surikaeBlock];
+    if (surikae) {
+        [self registSurikae:surikae];
+    }
+}
 
 + (void)surikaeWithClassName:(NSString *)className methodName:(NSString *)methodName surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock
 {
