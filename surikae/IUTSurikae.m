@@ -71,39 +71,21 @@ static NSMutableArray *surikaeKamen = nil;
     [surikaeKamen removeObject:surikae];
 }
 
-#pragma mark - get instance with global flag
+#pragma mark - for wide scope
 
 + (IUTSurikae *)registedSurikaeWithClassName:(NSString *)className methodName:(NSString *)methodName surikae:(void *)surikaeBlock
 {
-    IUTSurikae *surikae = [[[self alloc] initWithClassName:className methodName:methodName block:surikaeBlock] autorelease];
+    IUTSurikae *surikae = [[[self alloc] initWithClassName:className methodName:methodName surikae:surikaeBlock] autorelease];
     [self registSurikae:surikae];
     return surikae;
 }
 
 
-#pragma mark - get local instance
-
-+ (IUTSurikae *)surikaeWithClassMethod:(SEL)method class:(Class)class block:(void *)block
-{
-    return [[[self alloc] initWithClassMethod:method class:class block:block] autorelease];
-}
-
-+ (IUTSurikae *)surikaeWithInstanceMethod:(SEL)method class:(Class)class block:(void *)block
-{
-    return [[[self alloc] initWithInstanceMethod:method class:class block:block] autorelease];
-}
-
-+ (void)surikaeWithClassName:(NSString *)className methodName:(NSString *)methodName surikae:(void *)surikaeBlock
-{
-    IUTSurikae *surikae = [[self alloc] initWithClassName:className methodName:methodName block:surikaeBlock];
-    if (surikae) {
-        [self registSurikae:surikae];
-    }
-}
+#pragma mark - for local scope
 
 + (void)surikaeWithClassName:(NSString *)className methodName:(NSString *)methodName surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock
 {
-    IUTSurikae *surikae = [[self alloc] initWithClassName:className methodName:methodName block:surikaeBlock];
+    IUTSurikae *surikae = [[self alloc] initWithClassName:className methodName:methodName surikae:surikaeBlock];
     if (surikae) {
         @try {
             contextBlock();
@@ -140,7 +122,7 @@ static NSMutableArray *surikaeKamen = nil;
     return self;
 }
 
-- (id)initWithClassName:(NSString *)className methodName:(NSString *)methodName block:(void *)block
+- (id)initWithClassName:(NSString *)className methodName:(NSString *)methodName surikae:(void *)surikaeBlock
 {
     Class class = NSClassFromString(className);
     NSError *error = nil;
@@ -154,10 +136,10 @@ static NSMutableArray *surikaeKamen = nil;
             type = [methodName substringWithRange:range];
         }
         if ([type isEqualToString:@"+"]) {
-            return [self initWithClassMethod:selector class:class block:block];
+            return [self initWithClassMethod:selector class:class block:surikaeBlock];
         } else
         if ([type isEqualToString:@"-"]) {
-            return [self initWithInstanceMethod:selector class:class block:block];
+            return [self initWithInstanceMethod:selector class:class block:surikaeBlock];
         } else {
             NSString *reason = [NSString stringWithFormat:@"[%@ %@]: methodName: %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), methodName];
             @throw [NSException exceptionWithName:@"IUTSurikaeException" reason:reason userInfo:nil];

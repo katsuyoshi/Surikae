@@ -31,20 +31,19 @@ OF SUCH DAMAGE.
 
 @interface IUTSurikae : NSObject
 
-#pragma mark - get local instance
+
+#pragma mark - for local scope
 
 + (void)surikaeWithClassName:(NSString *)className methodName:(NSString *)methodName surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock;
 
-#pragma mark - get instance with global flag
+#pragma mark - for wide scope
 
 + (IUTSurikae *)registedSurikaeWithClassName:(NSString *)className methodName:(NSString *)methodName surikae:(void *)surikaeBlock;
-
-#pragma mark - revert
-
 + (void)clearAll;
 
-#pragma mark - initialize instance
 
-- (id)initWithClassName:(NSString *)className methodName:(NSString *)methodName block:(void *)block;
+#pragma mark - get an instance
+
+- (id)initWithClassName:(NSString *)className methodName:(NSString *)methodName surikae:(void *)surikaeBlock;
 
 @end
