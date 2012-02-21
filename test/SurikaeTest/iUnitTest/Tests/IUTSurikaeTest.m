@@ -65,18 +65,6 @@
     ASSERT_EQUAL(@"Foo", [Foo foo]);
 }
 
-- (void)classFooShouldBeBarWithMockBlock
-{
-    IUTSurikae *surikae = [[IUTSurikae alloc] initWithClassMethod:@selector(foo) class:[Foo class] block:^()
-        {
-            return @"Bar";
-        }
-    ];
-    ASSERT_EQUAL(@"Bar", [Foo foo]);
-    [surikae release];
-    ASSERT_EQUAL(@"Foo", [Foo foo]);
-}
-
 
 
 - (void)instanceFooShouldBeFoo
@@ -89,19 +77,6 @@
 {
     IUTSurikae *surikae = [[IUTSurikae alloc] initWithInstanceMethod:@selector(foo) originalClass:[Foo class] mockClass:[self class]];
 
-    Foo *foo = [[Foo new] autorelease];
-    ASSERT_EQUAL(@"bar", [foo foo]);
-    [surikae release];
-    ASSERT_EQUAL(@"foo", [foo foo]);
-}
-
-- (void)instanceFooShouldBeBarWithMockBlock
-{
-    IUTSurikae *surikae = [[IUTSurikae alloc] initWithInstanceMethod:@selector(foo) class:[Foo class] block:^()
-        {
-            return @"bar";
-        }
-    ];
     Foo *foo = [[Foo new] autorelease];
     ASSERT_EQUAL(@"bar", [foo foo]);
     [surikae release];
@@ -126,6 +101,7 @@
     // It will fail at the next test if the method was not retrieved.
 }
 
+/* DELETEME:
 - (void)testSurikaeWithClassMethodWithBlock
 {
    [IUTSurikae surikaeWithClassMethod:@selector(foo) class:[Foo class] block:^()
@@ -148,6 +124,7 @@
     ASSERT_EQUAL(@"bar", [foo foo]);
     // It will fail at the next test if the method was not retrieved.
 }
+*/
 
 
 - (void)testSurikaeWithClassMethodWithGlobalYES
@@ -255,6 +232,20 @@
 {
     __block Foo *foo = [[Foo new] autorelease];
     [IUTSurikae surikaeWithClassName:@"Foo" methodName:@"-foo" surikae:^()
+        {
+            return @"bar";
+        }
+        context:^() {
+            ASSERT_EQUAL(@"bar", [foo foo]);
+        }
+    ];
+    ASSERT_EQUAL(@"foo", [foo foo]);
+}
+
+- (void)testSurikaeWithClassNameInstanceMethodNameWithMinusTypeWithLocalBlock
+{
+    __block Foo *foo = [[Foo new] autorelease];
+    [IUTSurikae surikaeWithClassName:@"Foo" methodName:@"foo" surikae:^()
         {
             return @"bar";
         }

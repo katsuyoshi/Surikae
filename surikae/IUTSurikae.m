@@ -155,26 +155,12 @@ static NSMutableArray *surikaeKamen = nil;
 
 + (void)surikaeWithClassName:(NSString *)className methodName:(NSString *)methodName surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock
 {
-    Class class = NSClassFromString(className);
-    NSError *error = nil;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^([+-])(.+)" options:0 error:&error];
-    NSTextCheckingResult *match = [regex firstMatchInString:methodName options:0 range:NSMakeRange(0, [methodName length])];
-    if (match.numberOfRanges == 3) {
-        SEL selector = NSSelectorFromString([methodName substringWithRange:[match rangeAtIndex:2]]);
-        IUTSurikae *surikae;
-        NSString *type = [methodName substringWithRange:[match rangeAtIndex:1]];
-        if ([type isEqualToString:@"+"]) {
-            surikae = [[self alloc] initWithClassMethod:selector class:class block:surikaeBlock];
-        } else
-        if ([type isEqualToString:@"-"]) {
-            surikae = [[self alloc] initWithInstanceMethod:selector class:class block:surikaeBlock];
-        }
-        if (surikae) {
-            @try {
-                contextBlock();
-            } @finally {
-                [surikae release];
-            }
+    IUTSurikae *surikae = [[self alloc] initWithClassName:className methodName:methodName block:surikaeBlock];
+    if (surikae) {
+        @try {
+            contextBlock();
+        } @finally {
+            [surikae release];
         }
     }
 }
@@ -230,6 +216,35 @@ static NSMutableArray *surikaeKamen = nil;
         _originalIMP = surikaeInstanceMethodWithBlock(class, method, block);
     }
     return self;
+}
+
+- (id)initWithClassName:(NSString *)className methodName:(NSString *)methodName block:(void *)block
+{
+    Class class = NSClassFromString(className);
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^([+-]){0,1}(.+)" options:0 error:&error];
+    NSTextCheckingResult *match = [regex firstMatchInString:methodName options:0 range:NSMakeRange(0, [methodName length])];
+    if (match.numberOfRanges == 3) {
+        SEL selector = NSSelectorFromString([methodName substringWithRange:[match rangeAtIndex:2]]);
+        NSString *type = @"-";
+        NSRange range = [match rangeAtIndex:1];
+        if (range.location != NSNotFound) {
+            type = [methodName substringWithRange:range];
+        }
+        if ([type isEqualToString:@"+"]) {
+            return [self initWithClassMethod:selector class:class block:block];
+        } else
+        if ([type isEqualToString:@"-"]) {
+            return [self initWithInstanceMethod:selector class:class block:block];
+        } else {
+            NSString *reason = [NSString stringWithFormat:@"[%@ %@]: methodName: %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), methodName];
+            @throw [NSException exceptionWithName:@"IUTSurikaeException" reason:reason userInfo:nil];
+        }
+    } else {
+        NSString *reason = [NSString stringWithFormat:@"[%@ %@]: methodName: %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), methodName];
+        @throw [NSException exceptionWithName:@"IUTSurikaeException" reason:reason userInfo:nil];
+    }
+    return nil;
 }
 
 #pragma mark - revert

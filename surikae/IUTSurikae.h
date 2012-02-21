@@ -67,7 +67,11 @@ OF SUCH DAMAGE.
 
 - (id)initWithClassMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass;
 - (id)initWithInstanceMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass;
+
+
 - (id)initWithClassMethod:(SEL)method class:(Class)class block:(void *)block;
 - (id)initWithInstanceMethod:(SEL)method class:(Class)class block:(void *)block;
+
+- (id)initWithClassName:(NSString *)className methodName:(NSString *)methodName block:(void *)block;
 
 @end
