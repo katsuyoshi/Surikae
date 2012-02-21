@@ -10,12 +10,18 @@
 #import "NSDateExtension.h"
 #import "IUTSurikae.h"
 
-static int hour, minute, second;
-
 /* 
  * StopWatchTest2 is same as StopWatchTest.
  * When you setup Surikae at -setUp, test codes are more simple.
  */
+
+@interface StopWatchTest2() {
+    int hour;
+    int minute;
+    int second;
+}
+@end
+
 @implementation StopWatchTest2
 
 @synthesize stopWatch = _stopWatch;
