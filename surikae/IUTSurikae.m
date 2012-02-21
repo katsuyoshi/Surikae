@@ -28,8 +28,6 @@ OF SUCH DAMAGE.
 #import "IUTSurikae.h"
 
 typedef enum {
-    IUTSurikaeTypeClassMethod,
-    IUTSurikaeTypeInstanceMethod,
     IUTSurikaeTypeClassMethodWithBlock,
     IUTSurikaeTypeInstanceMethodWithBlock
 } IUTSurikaeType;
@@ -39,7 +37,6 @@ typedef enum {
 {
     IUTSurikaeType _type;
     Class _originalClass;
-    Class _mockClass;
     IMP _originalIMP;
     SEL _selector;
 }
@@ -72,84 +69,32 @@ static NSMutableArray *surikaeKamen = nil;
 
 #pragma mark - get instance with global flag
 
-+ (IUTSurikae *)registedSurikaeWithClassMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass
-{
-    return [self surikaeWithClassMethod:method originalClass:originalClass mockClass:mockClass global:YES];
-}
-
-+ (IUTSurikae *)registedSurikaeWithInstanceMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass
-{
-    return [self surikaeWithInstanceMethod:method originalClass:originalClass mockClass:mockClass global:YES];
-}
-
 + (IUTSurikae *)registedSurikaeWithClassMethod:(SEL)method class:(Class)class block:(void *)block
 {
-    return [self surikaeWithClassMethod:method class:class block:block global:YES];
+    IUTSurikae *surikae = [[[self alloc] initWithClassMethod:method class:class block:block] autorelease];
+    [self registSurikae:surikae];
+    return surikae;
 }
 
 + (IUTSurikae *)registedSurikaeWithInstanceMethod:(SEL)method class:(Class)class block:(void *)block
 {
-    return [self surikaeWithInstanceMethod:method class:class block:block global:YES];
-}
-
-
-+ (IUTSurikae *)surikaeWithClassMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass global:(BOOL)global
-{
-    IUTSurikae *surikae = [[[self alloc] initWithClassMethod:method originalClass:originalClass mockClass:mockClass] autorelease];
-    if (global) {
-        [[self class] registSurikae:surikae];
-    }
-    return surikae;
-}
-
-+ (IUTSurikae *)surikaeWithInstanceMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass global:(BOOL)global
-{
-    IUTSurikae *surikae = [[[self alloc] initWithInstanceMethod:method originalClass:originalClass mockClass:mockClass] autorelease];
-    if (global) {
-        [[self class] registSurikae:surikae];
-    }
-    return surikae;
-}
-
-+ (IUTSurikae *)surikaeWithClassMethod:(SEL)method class:(Class)class block:(void *)block global:(BOOL)global
-{
-    IUTSurikae *surikae = [[[self alloc] initWithClassMethod:method class:class block:block] autorelease];
-    if (global) {
-        [[self class] registSurikae:surikae];
-    }
-    return surikae;
-}
-
-+ (IUTSurikae *)surikaeWithInstanceMethod:(SEL)method class:(Class)class block:(void *)block global:(BOOL)global
-{
     IUTSurikae *surikae = [[[self alloc] initWithInstanceMethod:method class:class block:block] autorelease];
-    if (global) {
-        [[self class] registSurikae:surikae];
-    }
+    [self registSurikae:surikae];
     return surikae;
 }
+
 
 
 #pragma mark - get local instance
 
-+ (IUTSurikae *)surikaeWithClassMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass
-{
-    return [self surikaeWithClassMethod:method originalClass:originalClass mockClass:mockClass global:NO];
-}
-
-+ (IUTSurikae *)surikaeWithInstanceMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass
-{
-    return [self surikaeWithInstanceMethod:method originalClass:originalClass mockClass:mockClass global:NO];
-}
-
 + (IUTSurikae *)surikaeWithClassMethod:(SEL)method class:(Class)class block:(void *)block
 {
-    return [self surikaeWithClassMethod:method class:class block:block global:NO];
+    return [[[self alloc] initWithClassMethod:method class:class block:block] autorelease];
 }
 
 + (IUTSurikae *)surikaeWithInstanceMethod:(SEL)method class:(Class)class block:(void *)block
 {
-    return [self surikaeWithInstanceMethod:method class:class block:block global:NO];
+    return [[[self alloc] initWithInstanceMethod:method class:class block:block] autorelease];
 }
 
 
@@ -167,32 +112,6 @@ static NSMutableArray *surikaeKamen = nil;
 
 
 #pragma mark - initialize instance
-
-- (id)initWithClassMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass
-{
-    self = [self init];
-    if (self) {
-        _type = IUTSurikaeTypeClassMethod;
-        _selector = method;
-        _originalClass = originalClass;
-        _mockClass = mockClass;
-        surikaeClassMethod(_originalClass, _mockClass, _selector);
-    }
-    return self;
-}
-
-- (id)initWithInstanceMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass
-{
-    self = [self init];
-    if (self) {
-        _type = IUTSurikaeTypeInstanceMethod;
-        _selector = method;
-        _originalClass = originalClass;
-        _mockClass = mockClass;
-        surikaeInstanceMethod(_originalClass, _mockClass, _selector);
-    }
-    return self;
-}
 
 - (id)initWithClassMethod:(SEL)method class:(Class)class block:(void *)block
 {
@@ -257,12 +176,6 @@ static NSMutableArray *surikaeKamen = nil;
 - (void)dealloc
 {
     switch (_type) {
-    case IUTSurikaeTypeClassMethod:
-        surikaeClassMethod(_originalClass, _mockClass, _selector);
-        break;
-    case IUTSurikaeTypeInstanceMethod:
-        surikaeInstanceMethod(_originalClass, _mockClass, _selector);
-        break;
     case IUTSurikaeTypeClassMethodWithBlock:
         surikaeRetrieveClassMethodWithImp(_originalClass, _selector, _originalIMP);
         break;

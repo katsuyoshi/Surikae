@@ -33,8 +33,6 @@ OF SUCH DAMAGE.
 
 #pragma mark - get local instance
 
-+ (IUTSurikae *)surikaeWithClassMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass;
-+ (IUTSurikae *)surikaeWithInstanceMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass;
 + (IUTSurikae *)surikaeWithClassMethod:(SEL)method class:(Class)class block:(void *)block;
 + (IUTSurikae *)surikaeWithInstanceMethod:(SEL)method class:(Class)class block:(void *)block;
 
@@ -42,32 +40,14 @@ OF SUCH DAMAGE.
 
 #pragma mark - get instance with global flag
 
-+ (IUTSurikae *)registedSurikaeWithClassMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass;
-+ (IUTSurikae *)registedSurikaeWithInstanceMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass;
 + (IUTSurikae *)registedSurikaeWithClassMethod:(SEL)method class:(Class)class block:(void *)block;
 + (IUTSurikae *)registedSurikaeWithInstanceMethod:(SEL)method class:(Class)class block:(void *)block;
-
-#pragma mark - get instance with global flag (deprecated)
-
-// These methods are going to be private. use registedSurikae... instead.
-/** @deprecated */
-+ (IUTSurikae *)surikaeWithClassMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass global:(BOOL)global;
-/** @deprecated */
-+ (IUTSurikae *)surikaeWithInstanceMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass global:(BOOL)global;
-/** @deprecated */
-+ (IUTSurikae *)surikaeWithClassMethod:(SEL)method class:(Class)class block:(void *)block global:(BOOL)global;
-/** @deprecated */
-+ (IUTSurikae *)surikaeWithInstanceMethod:(SEL)method class:(Class)class block:(void *)block global:(BOOL)global;
 
 #pragma mark - revert
 
 + (void)clearAll;
 
 #pragma mark - initialize instance
-
-- (id)initWithClassMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass;
-- (id)initWithInstanceMethod:(SEL)method originalClass:(Class)originalClass mockClass:(Class)mockClass;
-
 
 - (id)initWithClassMethod:(SEL)method class:(Class)class block:(void *)block;
 - (id)initWithInstanceMethod:(SEL)method class:(Class)class block:(void *)block;
