@@ -49,7 +49,6 @@
 		46F955CC14EDC11B00F9BF84 /* StopWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F955CB14EDC11B00F9BF84 /* StopWatch.m */; };
 		46F955D014EDC19D00F9BF84 /* StopWatchTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F955CF14EDC19D00F9BF84 /* StopWatchTest.m */; };
 		46F955D614EDCB1200F9BF84 /* StopWatchTest2.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F955D514EDCB1200F9BF84 /* StopWatchTest2.m */; };
-		DA6871BE14F0CE2800C8A2DF /* StopWatchBlockTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6871BD14F0CE2800C8A2DF /* StopWatchBlockTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,8 +130,6 @@
 		46F955CF14EDC19D00F9BF84 /* StopWatchTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopWatchTest.m; sourceTree = "<group>"; };
 		46F955D414EDCB1200F9BF84 /* StopWatchTest2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopWatchTest2.h; sourceTree = "<group>"; };
 		46F955D514EDCB1200F9BF84 /* StopWatchTest2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopWatchTest2.m; sourceTree = "<group>"; };
-		DA6871BC14F0CE2800C8A2DF /* StopWatchBlockTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopWatchBlockTest.h; sourceTree = "<group>"; };
-		DA6871BD14F0CE2800C8A2DF /* StopWatchBlockTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopWatchBlockTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,8 +312,6 @@
 				46E1391814E47F6800EEEF4F /* NSDateExtension.m */,
 				46E1391B14E482EE00EEEF4F /* WeatherTest.h */,
 				46E1391C14E482EE00EEEF4F /* WeatherTest.m */,
-				DA6871BC14F0CE2800C8A2DF /* StopWatchBlockTest.h */,
-				DA6871BD14F0CE2800C8A2DF /* StopWatchBlockTest.m */,
 				46F955CE14EDC19D00F9BF84 /* StopWatchTest.h */,
 				46F955CF14EDC19D00F9BF84 /* StopWatchTest.m */,
 				46F955D414EDCB1200F9BF84 /* StopWatchTest2.h */,
@@ -425,7 +420,6 @@
 				46F955CC14EDC11B00F9BF84 /* StopWatch.m in Sources */,
 				46F955D014EDC19D00F9BF84 /* StopWatchTest.m in Sources */,
 				46F955D614EDCB1200F9BF84 /* StopWatchTest2.m in Sources */,
-				DA6871BE14F0CE2800C8A2DF /* StopWatchBlockTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

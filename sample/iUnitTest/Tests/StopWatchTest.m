@@ -10,7 +10,6 @@
 #import "NSDateExtension.h"
 #import "IUTSurikae.h"
 
-static int hour, minute, second;
 
 @implementation StopWatchTest
 
@@ -43,13 +42,16 @@ static int hour, minute, second;
 
 - (void)timeShouldBe1Second
 {
+    __block int hour = 0;
+    __block int minute = 0;
+    __block int second = 0;
+
     [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
         {
             return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
         }
     context:^()
         {
-            hour = minute = second = 0;
             [self.stopWatch start];
             second = 1;
             [self.stopWatch stop];
@@ -60,13 +62,16 @@ static int hour, minute, second;
 
 - (void)timeShouldBe1SecondAfterMore1Scond
 {
+    __block int hour = 0;
+    __block int minute = 0;
+    __block int second = 0;
+
     [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
         {
             return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
         }
     context:^()
         {
-            hour = minute = second = 0;
             [self.stopWatch start];
             second = 1;
             [self.stopWatch stop];
@@ -78,13 +83,16 @@ static int hour, minute, second;
 
 - (void)timeShouldBe1SecondEvneIfItsNotStopping
 {
+    __block int hour = 0;
+    __block int minute = 0;
+    __block int second = 0;
+
     [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
         {
             return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
         }
     context:^()
         {
-            hour = minute = second = 0;
             [self.stopWatch start];
             second = 1;
             ASSERT_EQUAL_DOUBLE(1.0, self.stopWatch.time);
@@ -94,13 +102,16 @@ static int hour, minute, second;
 
 - (void)timeShouldBe1SecondEvenIfStartTwice
 {
+    __block int hour = 0;
+    __block int minute = 0;
+    __block int second = 0;
+
     [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
         {
             return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
         }
     context:^()
         {
-            hour = minute = second = 0;
             [self.stopWatch start];
             second = 1;
             [self.stopWatch start];
@@ -111,6 +122,10 @@ static int hour, minute, second;
 
 - (void)timeShouldBeZeroBeforeToStartForTheFirstTime
 {
+    __block int hour = 0;
+    __block int minute = 0;
+    __block int second = 0;
+
     [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
         {
             return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
@@ -124,6 +139,10 @@ static int hour, minute, second;
 
 - (void)timeShouldBeZeroWhenStopWithoutStarting
 {
+    __block int hour = 0;
+    __block int minute = 0;
+    __block int second = 0;
+
     [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
         {
             return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
