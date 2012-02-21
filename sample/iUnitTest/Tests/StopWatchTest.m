@@ -47,55 +47,97 @@ static int hour, minute, second;
 
 - (void)timeShouldBe1Second
 {
-    [IUTSurikae surikaeWithClassMethod:@selector(date) originalClass:[NSDate class] mockClass:[self class]];
-    hour = minute = second = 0;
-    [self.stopWatch start];
-    second = 1;
-    [self.stopWatch stop];
-    ASSERT_EQUAL_DOUBLE(1.0, self.stopWatch.time);
+    [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
+        {
+            return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
+        }
+    context:^()
+        {
+            hour = minute = second = 0;
+            [self.stopWatch start];
+            second = 1;
+            [self.stopWatch stop];
+            ASSERT_EQUAL_DOUBLE(1.0, self.stopWatch.time);
+        }
+    ];
 }
 
 - (void)timeShouldBe1SecondAfterMore1Scond
 {
-    [IUTSurikae surikaeWithClassMethod:@selector(date) originalClass:[NSDate class] mockClass:[self class]];
-    hour = minute = second = 0;
-    [self.stopWatch start];
-    second = 1;
-    [self.stopWatch stop];
-    second = 2;
-    ASSERT_EQUAL_DOUBLE(1.0, self.stopWatch.time);
+    [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
+        {
+            return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
+        }
+    context:^()
+        {
+            hour = minute = second = 0;
+            [self.stopWatch start];
+            second = 1;
+            [self.stopWatch stop];
+            second = 2;
+            ASSERT_EQUAL_DOUBLE(1.0, self.stopWatch.time);
+        }
+    ];
 }
 
 - (void)timeShouldBe1SecondEvneIfItsNotStopping
 {
-    [IUTSurikae surikaeWithClassMethod:@selector(date) originalClass:[NSDate class] mockClass:[self class]];
-    hour = minute = second = 0;
-    [self.stopWatch start];
-    second = 1;
-    ASSERT_EQUAL_DOUBLE(1.0, self.stopWatch.time);
+    [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
+        {
+            return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
+        }
+    context:^()
+        {
+            hour = minute = second = 0;
+            [self.stopWatch start];
+            second = 1;
+            ASSERT_EQUAL_DOUBLE(1.0, self.stopWatch.time);
+        }
+    ];
 }
 
 - (void)timeShouldBe1SecondEvenIfStartTwice
 {
-    [IUTSurikae surikaeWithClassMethod:@selector(date) originalClass:[NSDate class] mockClass:[self class]];
-    hour = minute = second = 0;
-    [self.stopWatch start];
-    second = 1;
-    [self.stopWatch start];
-    ASSERT_EQUAL_DOUBLE(1.0, self.stopWatch.time);
+    [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
+        {
+            return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
+        }
+    context:^()
+        {
+            hour = minute = second = 0;
+            [self.stopWatch start];
+            second = 1;
+            [self.stopWatch start];
+            ASSERT_EQUAL_DOUBLE(1.0, self.stopWatch.time);
+        }
+    ];
 }
 
 - (void)timeShouldBeZeroBeforeToStartForTheFirstTime
 {
-    [IUTSurikae surikaeWithClassMethod:@selector(date) originalClass:[NSDate class] mockClass:[self class]];
-    ASSERT_EQUAL_DOUBLE(0.0, self.stopWatch.time);
+    [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
+        {
+            return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
+        }
+    context:^()
+        {
+            ASSERT_EQUAL_DOUBLE(0.0, self.stopWatch.time);
+        }
+    ];
 }
 
 - (void)timeShouldBeZeroWhenStopWithoutStarting
 {
-    [IUTSurikae surikaeWithClassMethod:@selector(date) originalClass:[NSDate class] mockClass:[self class]];
-    [self.stopWatch stop];
-    ASSERT_EQUAL_DOUBLE(0.0, self.stopWatch.time);
+    [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
+        {
+            return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
+        }
+    context:^()
+        {
+            [self.stopWatch stop];
+            ASSERT_EQUAL_DOUBLE(0.0, self.stopWatch.time);
+        }
+    ];
 }
 
 

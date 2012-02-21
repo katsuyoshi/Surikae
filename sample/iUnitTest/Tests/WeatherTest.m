@@ -27,9 +27,11 @@ static id _delegate = nil;
     
     _delegate = self;
     
-    // If set global YES, IUTSurikae class retains exchanged methods.
-    // When you want to revrive these all exchanged methods, call +[IUTSurikae cleanAl]. 
-    [IUTSurikae surikaeWithClassMethod:@selector(connectionWithRequest:delegate:) originalClass:[NSURLConnection class] mockClass:[self class] global:YES];
+    [IUTSurikae registedSurikaeWithClassName:@"NSURLConnection" methodName:@"+connectionWithRequest:delegate:" surikae:^(id object, NSURLRequest *request, id delegate) {
+        self.request = request;
+        // return NSURLConnection which isn't starting to connect.
+        return [[[NSURLConnection alloc] initWithRequest:request delegate:delegate startImmediately:NO] autorelease];
+    }];
     
     self.weather = [Weather new];
 }

@@ -40,7 +40,7 @@
 {
     __block int second = 0;
  
-    [IUTSurikae surikaeWithClassMethod:@selector(date) class:[NSDate class] surikae:^()
+    [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
         {
             return [NSDate dateWithYear:2012 month:2 day:17 hour:0 minute:0 second:second];
         }

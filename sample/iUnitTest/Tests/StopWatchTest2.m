@@ -26,7 +26,10 @@ static int hour, minute, second;
     
     hour = minute = second = 0;
 
-    [IUTSurikae registedSurikaeWithClassMethod:@selector(date) originalClass:[NSDate class] mockClass:[self class]];
+    [IUTSurikae registedSurikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^(){
+        return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
+    }];
+    
     
     self.stopWatch = [StopWatch new];
 }
@@ -48,11 +51,6 @@ static int hour, minute, second;
 
 #pragma mark -
 #pragma mark Helpers
-
-+ (NSDate *)date
-{
-    return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
-}
 
 #pragma mark -
 #pragma mark Tests
