@@ -153,23 +153,29 @@ static NSMutableArray *surikaeKamen = nil;
 }
 
 
-+ (void)surikaeWithClassMethod:(SEL)method class:(Class)class surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock
++ (void)surikaeWithClassName:(NSString *)className methodName:(NSString *)methodName surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock
 {
-    IUTSurikae *surikae = [[self alloc] initWithClassMethod:method class:class block:surikaeBlock];
-    @try {
-        contextBlock();
-    } @finally {
-        [surikae release];
-    }
-}
-
-+ (void)surikaeWithInstanceMethod:(SEL)method class:(Class)class surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock
-{
-    IUTSurikae *surikae = [[self alloc] initWithInstanceMethod:method class:class block:surikaeBlock];
-    @try {
-        contextBlock();
-    } @finally {
-        [surikae release];
+    Class class = NSClassFromString(className);
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^([+-])(.+)" options:0 error:&error];
+    NSTextCheckingResult *match = [regex firstMatchInString:methodName options:0 range:NSMakeRange(0, [methodName length])];
+    if (match.numberOfRanges == 3) {
+        SEL selector = NSSelectorFromString([methodName substringWithRange:[match rangeAtIndex:2]]);
+        IUTSurikae *surikae;
+        NSString *type = [methodName substringWithRange:[match rangeAtIndex:1]];
+        if ([type isEqualToString:@"+"]) {
+            surikae = [[self alloc] initWithClassMethod:selector class:class block:surikaeBlock];
+        } else
+        if ([type isEqualToString:@"-"]) {
+            surikae = [[self alloc] initWithInstanceMethod:selector class:class block:surikaeBlock];
+        }
+        if (surikae) {
+            @try {
+                contextBlock();
+            } @finally {
+                [surikae release];
+            }
+        }
     }
 }
 

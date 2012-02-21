@@ -236,11 +236,11 @@
     // It will fail at the next test if the method was not retrieved.
 }
 
-#pragma mark - convenience class methods
+#pragma mark - convenience methods
 
-- (void)testSurikaeWithClassMethodWithLocalBlock
+- (void)testSurikaeWithClassNameClassMethodNameWithLocalBlock
 {
-    [IUTSurikae surikaeWithClassMethod:@selector(foo) class:[Foo class] surikae:^()
+    [IUTSurikae surikaeWithClassName:@"Foo" methodName:@"+foo" surikae:^()
         {
             return @"Bar";
         }
@@ -251,18 +251,18 @@
     ASSERT_EQUAL(@"Foo", [Foo foo]);
 }
 
-- (void)testSurikaeWithLocalMethodWithLocalBlock
+- (void)testSurikaeWithClassNameInstanceMethodNameWithLocalBlock
 {
-    [IUTSurikae surikaeWithInstanceMethod:@selector(foo) class:[Foo class] surikae:^()
+    __block Foo *foo = [[Foo new] autorelease];
+    [IUTSurikae surikaeWithClassName:@"Foo" methodName:@"-foo" surikae:^()
         {
             return @"bar";
         }
         context:^() {
-            Foo *foo = [[Foo new] autorelease];
             ASSERT_EQUAL(@"bar", [foo foo]);
         }
     ];
-    ASSERT_EQUAL(@"Foo", [Foo foo]);
+    ASSERT_EQUAL(@"foo", [foo foo]);
 }
 
 

@@ -38,8 +38,7 @@ OF SUCH DAMAGE.
 + (IUTSurikae *)surikaeWithClassMethod:(SEL)method class:(Class)class block:(void *)block;
 + (IUTSurikae *)surikaeWithInstanceMethod:(SEL)method class:(Class)class block:(void *)block;
 
-+ (void)surikaeWithClassMethod:(SEL)method class:(Class)class surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock;
-+ (void)surikaeWithInstanceMethod:(SEL)method class:(Class)class surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock;
++ (void)surikaeWithClassName:(NSString *)className methodName:(NSString *)methodName surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock;
 
 #pragma mark - get instance with global flag
 
