@@ -10,6 +10,7 @@
 #import "NSDateExtension.h"
 #import "IUTSurikae.h"
 
+static int hour, minute, second;
 
 @implementation StopWatchTest
 
@@ -36,11 +37,6 @@
 #pragma mark -
 #pragma mark Helpers
 
-static int hour, minute, second;
-+ (NSDate *)date
-{
-    return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
-}
 
 #pragma mark -
 #pragma mark Tests
