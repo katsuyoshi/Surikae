@@ -42,13 +42,11 @@
 
 - (void)timeShouldBe1Second
 {
-    __block int hour = 0;
-    __block int minute = 0;
     __block int second = 0;
 
     [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
         {
-            return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
+            return [NSDate dateWithYear:2012 month:2 day:17 hour:0 minute:0 second:second];
         }
     context:^()
         {
@@ -62,13 +60,11 @@
 
 - (void)timeShouldBe1SecondAfterMore1Scond
 {
-    __block int hour = 0;
-    __block int minute = 0;
     __block int second = 0;
 
     [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
         {
-            return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
+            return [NSDate dateWithYear:2012 month:2 day:17 hour:0 minute:0 second:second];
         }
     context:^()
         {
@@ -83,13 +79,11 @@
 
 - (void)timeShouldBe1SecondEvneIfItsNotStopping
 {
-    __block int hour = 0;
-    __block int minute = 0;
     __block int second = 0;
 
     [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
         {
-            return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
+            return [NSDate dateWithYear:2012 month:2 day:17 hour:0 minute:0 second:second];
         }
     context:^()
         {
@@ -102,13 +96,11 @@
 
 - (void)timeShouldBe1SecondEvenIfStartTwice
 {
-    __block int hour = 0;
-    __block int minute = 0;
     __block int second = 0;
 
     [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
         {
-            return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
+            return [NSDate dateWithYear:2012 month:2 day:17 hour:0 minute:0 second:second];
         }
     context:^()
         {
@@ -122,13 +114,11 @@
 
 - (void)timeShouldBeZeroBeforeToStartForTheFirstTime
 {
-    __block int hour = 0;
-    __block int minute = 0;
     __block int second = 0;
 
     [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
         {
-            return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
+            return [NSDate dateWithYear:2012 month:2 day:17 hour:0 minute:0 second:second];
         }
     context:^()
         {
@@ -139,13 +129,11 @@
 
 - (void)timeShouldBeZeroWhenStopWithoutStarting
 {
-    __block int hour = 0;
-    __block int minute = 0;
     __block int second = 0;
 
     [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
         {
-            return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
+            return [NSDate dateWithYear:2012 month:2 day:17 hour:0 minute:0 second:second];
         }
     context:^()
         {

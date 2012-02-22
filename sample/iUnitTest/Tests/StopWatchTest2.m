@@ -16,8 +16,6 @@
  */
 
 @interface StopWatchTest2() {
-    int hour;
-    int minute;
     int second;
 }
 @end
@@ -30,10 +28,10 @@
 {
     [super setUp];
     
-    hour = minute = second = 0;
+    second = 0;
 
     [IUTSurikae registedSurikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^(){
-        return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
+        return [NSDate dateWithYear:2012 month:2 day:17 hour:0 minute:0 second:second];
     }];
     
     
