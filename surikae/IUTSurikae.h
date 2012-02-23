@@ -31,19 +31,27 @@ OF SUCH DAMAGE.
 
 @interface IUTSurikae : NSObject
 
-
-#pragma mark - for local scope
-
-+ (void)surikaeWithClassName:(NSString *)className methodName:(NSString *)methodName surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock;
-
-#pragma mark - for wide scope
-
-+ (IUTSurikae *)registedSurikaeWithClassName:(NSString *)className methodName:(NSString *)methodName surikae:(void *)surikaeBlock;
 + (void)clearAll;
 
+@end
 
-#pragma mark - get an instance
+@interface IUTSurikae(deprecated)
 
-- (id)initWithClassName:(NSString *)className methodName:(NSString *)methodName surikae:(void *)surikaeBlock;
++ (void)surikaeWithClassName:(NSString *)className methodName:(NSString *)methodName surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock __OSX_AVAILABLE_BUT_DEPRECATED(__MAC_10_5,__MAC_10_5,__IPHONE_5_0,__IPHONE_5_0);
++ (IUTSurikae *)registedSurikaeWithClassName:(NSString *)className methodName:(NSString *)methodName surikae:(void *)surikaeBlock __OSX_AVAILABLE_BUT_DEPRECATED(__MAC_10_5,__MAC_10_5,__IPHONE_5_0,__IPHONE_5_0);
+
+- (id)initWithClassName:(NSString *)className methodName:(NSString *)methodName surikae:(void *)surikaeBlock __OSX_AVAILABLE_BUT_DEPRECATED(__MAC_10_5,__MAC_10_5,__IPHONE_5_0,__IPHONE_5_0);
+
+@end
+
+@interface NSObject(IUTSurikae)
+
++ (void)surikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock;
+- (void)surikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock;
+
++ (void)registedSurikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock;
+- (void)registedSurikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock;
+
++ (void)removeAllSurikaes;
 
 @end

@@ -80,9 +80,10 @@
 
 #pragma mark - convenience methods
 
-- (void)testSurikaeWithClassNameClassMethodNameWithLocalBlock
+- (void)testSurikaeWithClassNameClassMethodNameWithSurikaeBlock
 {
-    [IUTSurikae surikaeWithClassName:@"Foo" methodName:@"+foo" surikae:^()
+    [IUTSurikae surikaeWithClassName:@"Foo" methodName:@"+foo"
+        surikae:^()
         {
             return @"Bar";
         }
@@ -93,10 +94,11 @@
     ASSERT_EQUAL(@"Foo", [Foo foo]);
 }
 
-- (void)testSurikaeWithClassNameInstanceMethodNameWithLocalBlock
+- (void)testSurikaeWithClassNameInstanceMethodNameWithSurikaeBlock
 {
     __block Foo *foo = [[Foo new] autorelease];
-    [IUTSurikae surikaeWithClassName:@"Foo" methodName:@"-foo" surikae:^()
+    [IUTSurikae surikaeWithClassName:@"Foo" methodName:@"-foo"
+        surikae:^()
         {
             return @"bar";
         }
@@ -107,10 +109,11 @@
     ASSERT_EQUAL(@"foo", [foo foo]);
 }
 
-- (void)testSurikaeWithClassNameInstanceMethodNameWithMinusTypeWithLocalBlock
+- (void)testSurikaeWithClassNameInstanceMethodNameWithMinusTypeWithSurikaeBlock
 {
     __block Foo *foo = [[Foo new] autorelease];
-    [IUTSurikae surikaeWithClassName:@"Foo" methodName:@"foo" surikae:^()
+    [IUTSurikae surikaeWithClassName:@"Foo" methodName:@"foo"
+        surikae:^()
         {
             return @"bar";
         }
@@ -120,6 +123,66 @@
     ];
     ASSERT_EQUAL(@"foo", [foo foo]);
 }
+
+
+#pragma mark - NSObject category extention
+
+- (void)testSurikaeWithClassMethodWithSurikaeBlockAndContextBlock
+{
+    [Foo surikaeWithSelector:@selector(foo)
+        surikae:^()
+        {
+            return @"Bar";
+        }
+        context:^() {
+            ASSERT_EQUAL(@"Bar", [Foo foo]);
+        }
+    ];
+    ASSERT_EQUAL(@"Foo", [Foo foo]);
+}
+
+- (void)testSurikaeWithInstanceMethodWithSurikaeBlockAndContextBlock
+{
+    Foo *foo = [[Foo new] autorelease];
+    [foo surikaeWithSelector:@selector(foo)
+        surikae:^()
+        {
+            return @"bar";
+        }
+        context:^() {
+            ASSERT_EQUAL(@"bar", [foo foo]);
+        }
+    ];
+    ASSERT_EQUAL(@"foo", [foo foo]);
+}
+
+- (void)testRegistedSurikaeWithClassMethodWithSurikaeBlock
+{
+    [Foo registedSurikaeWithSelector:@selector(foo)
+        surikae:^()
+        {
+            return @"Bar";
+        }
+    ];
+    ASSERT_EQUAL(@"Bar", [Foo foo]);
+    [IUTSurikae clearAll];
+    ASSERT_EQUAL(@"Foo", [Foo foo]);
+}
+
+- (void)testRegistedSurikaeWithInstanceMethodWithSurikaeBlock
+{
+    Foo *foo = [[Foo new] autorelease];
+    [foo registedSurikaeWithSelector:@selector(foo)
+        surikae:^()
+        {
+            return @"bar";
+        }
+    ];
+    ASSERT_EQUAL(@"bar", [foo foo]);
+    [IUTSurikae clearAll];
+    ASSERT_EQUAL(@"foo", [foo foo]);
+}
+
 
 
 #pragma mark -

@@ -23,11 +23,14 @@
 {
     [super setUp];
         
-    [IUTSurikae registedSurikaeWithClassName:@"NSURLConnection" methodName:@"+connectionWithRequest:delegate:" surikae:^(id object, NSURLRequest *request, id delegate) {
-        self.request = request;
-        // return NSURLConnection which isn't starting to connect.
-        return [[[NSURLConnection alloc] initWithRequest:request delegate:delegate startImmediately:NO] autorelease];
-    }];
+    [NSURLConnection registedSurikaeWithSelector:@selector(connectionWithRequest:delegate:)
+        surikae:^(id object, NSURLRequest *request, id delegate)
+        {
+            self.request = request;
+            // return NSURLConnection which isn't starting to connect.
+            return [[[NSURLConnection alloc] initWithRequest:request delegate:delegate startImmediately:NO] autorelease];
+        }
+    ];
     
     self.weather = [Weather new];
 }
@@ -35,7 +38,7 @@
 - (void)tearDown
 {
     // Retrive all exchanged methods.
-    [IUTSurikae clearAll];
+    [NSURLConnection removeAllSurikaes];
     
     self.weather = nil;
     [super tearDown];

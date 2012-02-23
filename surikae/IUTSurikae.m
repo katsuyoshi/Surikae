@@ -172,3 +172,52 @@ static NSMutableArray *surikaeKamen = nil;
 }
 
 @end
+
+
+@implementation NSObject(IUTSurikae)
+
++ (void)surikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock
+{
+    IUTSurikae *surikae = [[IUTSurikae alloc] initWithClassMethod:selector class:self block:surikaeBlock];
+    if (surikae) {
+        @try {
+            contextBlock();
+        } @finally {
+            [surikae release];
+        }
+    }
+}
+
+- (void)surikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock
+{
+    IUTSurikae *surikae = [[IUTSurikae alloc] initWithInstanceMethod:selector class:[self class] block:surikaeBlock];
+    if (surikae) {
+        @try {
+            contextBlock();
+        } @finally {
+            [surikae release];
+        }
+    }
+}
+
++ (void)registedSurikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock
+{
+    IUTSurikae *surikae = [[IUTSurikae alloc] initWithClassMethod:selector class:self block:surikaeBlock];
+    [IUTSurikae registSurikae:surikae];
+    [surikae release];
+}
+
+- (void)registedSurikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock
+{
+    IUTSurikae *surikae = [[IUTSurikae alloc] initWithInstanceMethod:selector class:[self class] block:surikaeBlock];
+    [IUTSurikae registSurikae:surikae];
+    [surikae release];
+}
+
++ (void)removeAllSurikaes
+{
+    [IUTSurikae clearAll];
+}
+
+
+@end

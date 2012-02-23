@@ -44,11 +44,12 @@
 {
     __block int second = 0;
 
-    [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
+    [NSDate surikaeWithSelector:@selector(date)
+        surikae:^()
         {
             return [NSDate dateWithYear:2012 month:2 day:17 hour:0 minute:0 second:second];
         }
-    context:^()
+        context:^()
         {
             [self.stopWatch start];
             second = 1;
@@ -62,11 +63,12 @@
 {
     __block int second = 0;
 
-    [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
+    [NSDate surikaeWithSelector:@selector(date)
+        surikae:^()
         {
             return [NSDate dateWithYear:2012 month:2 day:17 hour:0 minute:0 second:second];
         }
-    context:^()
+        context:^()
         {
             [self.stopWatch start];
             second = 1;
@@ -81,11 +83,12 @@
 {
     __block int second = 0;
 
-    [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
+    [NSDate surikaeWithSelector:@selector(date)
+        surikae:^()
         {
             return [NSDate dateWithYear:2012 month:2 day:17 hour:0 minute:0 second:second];
         }
-    context:^()
+        context:^()
         {
             [self.stopWatch start];
             second = 1;
@@ -98,11 +101,12 @@
 {
     __block int second = 0;
 
-    [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
+    [NSDate surikaeWithSelector:@selector(date)
+        surikae:^()
         {
             return [NSDate dateWithYear:2012 month:2 day:17 hour:0 minute:0 second:second];
         }
-    context:^()
+        context:^()
         {
             [self.stopWatch start];
             second = 1;
@@ -116,11 +120,12 @@
 {
     __block int second = 0;
 
-    [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
+    [NSDate surikaeWithSelector:@selector(date)
+        surikae:^()
         {
             return [NSDate dateWithYear:2012 month:2 day:17 hour:0 minute:0 second:second];
         }
-    context:^()
+        context:^()
         {
             ASSERT_EQUAL_DOUBLE(0.0, self.stopWatch.time);
         }
@@ -131,11 +136,12 @@
 {
     __block int second = 0;
 
-    [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
+    [NSDate surikaeWithSelector:@selector(date)
+        surikae:^()
         {
             return [NSDate dateWithYear:2012 month:2 day:17 hour:0 minute:0 second:second];
         }
-    context:^()
+        context:^()
         {
             [self.stopWatch stop];
             ASSERT_EQUAL_DOUBLE(0.0, self.stopWatch.time);

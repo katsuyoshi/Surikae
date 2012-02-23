@@ -30,9 +30,12 @@
     
     second = 0;
 
-    [IUTSurikae registedSurikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^(){
-        return [NSDate dateWithYear:2012 month:2 day:17 hour:0 minute:0 second:second];
-    }];
+    [NSDate registedSurikaeWithSelector:@selector(date)
+        surikae:^()
+        {
+            return [NSDate dateWithYear:2012 month:2 day:17 hour:0 minute:0 second:second];
+        }
+    ];
     
     
     self.stopWatch = [StopWatch new];
@@ -42,7 +45,7 @@
 {
     self.stopWatch = nil;
     
-    [IUTSurikae clearAll];
+    [NSDate removeAllSurikaes];
     
     [super tearDown];
 }
