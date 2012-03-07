@@ -47,9 +47,11 @@ OF SUCH DAMAGE.
 @interface NSObject(IUTSurikae)
 
 + (void)surikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock;
++ (void)surikaeInstanceMethod:(SEL)selector surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock;
 - (void)surikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock;
 
 + (void)registedSurikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock;
++ (void)registedSurikaeInstanceMethod:(SEL)selector surikae:(void *)surikaeBlock;
 - (void)registedSurikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock;
 
 + (void)removeAllSurikaes;

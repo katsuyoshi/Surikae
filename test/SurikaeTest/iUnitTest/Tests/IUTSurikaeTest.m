@@ -156,6 +156,21 @@
     ASSERT_EQUAL(@"foo", [foo foo]);
 }
 
+- (void)testSurikaeInstanceMethodWithSurikaeBlockAndContextBlock
+{
+    Foo *foo = [[Foo new] autorelease];
+    [Foo surikaeInstanceMethod:@selector(foo)
+        surikae:^()
+        {
+            return @"bar";
+        }
+        context:^() {
+            ASSERT_EQUAL(@"bar", [foo foo]);
+        }
+    ];
+    ASSERT_EQUAL(@"foo", [foo foo]);
+}
+
 - (void)testRegistedSurikaeWithClassMethodWithSurikaeBlock
 {
     [Foo registedSurikaeWithSelector:@selector(foo)
@@ -178,6 +193,20 @@
             return @"bar";
         }
     ];
+    ASSERT_EQUAL(@"bar", [foo foo]);
+    [IUTSurikae clearAll];
+    ASSERT_EQUAL(@"foo", [foo foo]);
+}
+
+- (void)testRegistedSurikaeInstanceMethodWithSurikaeBlock
+{
+    [Foo registedSurikaeInstanceMethod:@selector(foo)
+        surikae:^()
+        {
+            return @"bar";
+        }
+    ];
+    Foo *foo = [[Foo new] autorelease];
     ASSERT_EQUAL(@"bar", [foo foo]);
     [IUTSurikae clearAll];
     ASSERT_EQUAL(@"foo", [foo foo]);

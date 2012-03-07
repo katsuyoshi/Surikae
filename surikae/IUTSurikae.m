@@ -188,9 +188,9 @@ static NSMutableArray *surikaeKamen = nil;
     }
 }
 
-- (void)surikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock
++ (void)surikaeInstanceMethod:(SEL)selector surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock
 {
-    IUTSurikae *surikae = [[IUTSurikae alloc] initWithInstanceMethod:selector class:[self class] block:surikaeBlock];
+    IUTSurikae *surikae = [[IUTSurikae alloc] initWithInstanceMethod:selector class:self block:surikaeBlock];
     if (surikae) {
         @try {
             contextBlock();
@@ -200,6 +200,11 @@ static NSMutableArray *surikaeKamen = nil;
     }
 }
 
+- (void)surikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock
+{
+    [[self class] surikaeInstanceMethod:selector surikae:surikaeBlock context:contextBlock];
+}
+
 + (void)registedSurikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock
 {
     IUTSurikae *surikae = [[IUTSurikae alloc] initWithClassMethod:selector class:self block:surikaeBlock];
@@ -207,11 +212,16 @@ static NSMutableArray *surikaeKamen = nil;
     [surikae release];
 }
 
-- (void)registedSurikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock
++ (void)registedSurikaeInstanceMethod:(SEL)selector surikae:(void *)surikaeBlock
 {
-    IUTSurikae *surikae = [[IUTSurikae alloc] initWithInstanceMethod:selector class:[self class] block:surikaeBlock];
+    IUTSurikae *surikae = [[IUTSurikae alloc] initWithInstanceMethod:selector class:self block:surikaeBlock];
     [IUTSurikae registSurikae:surikae];
     [surikae release];
+}
+
+- (void)registedSurikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock
+{
+    [[self class] registedSurikaeInstanceMethod:selector surikae:surikaeBlock];
 }
 
 + (void)removeAllSurikaes
