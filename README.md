@@ -17,18 +17,19 @@ Import Surikae folder to you project.
 
 How to use
 =
-Use +surikaeWithClassName:surikae:context of IUTSurikae.  
-It replace the method(methodName) of class(className) by surikae block.  
-The methodName you specify by string with + or -. If omit it, treat it as -.  
+Use +surikaeWithSelector:surikae:context of NSObject.  
+It replace the selector of the Class by surikae block.  
+If you want to replace an instance method, use -surikaeWithSelector:surikae:context of NSObject.
 This effect is available in the context block only.  
   
 [See StopWatchTest.m](https://github.com/katsuyoshi/Surikae/blob/master/sample/iUnitTest/Tests/StopWatchTest.m)
 
-    [IUTSurikae surikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^()
+    [NSDate surikaeWithSelector:@selector(date)
+        surikae:^()
         {
             return [NSDate dateWithYear:2012 month:2 day:17 hour:0 minute:0 second:second];
         }
-    context:^()
+        context:^()
         {
             [self.stopWatch start];
             second = 1;
@@ -39,26 +40,30 @@ This effect is available in the context block only.
 
 --
 
-If you need these effect more long period, use +registedSurikaeWithClassName:methodName:surikae of IUTSurikae class.  
+If you need these effect more long period, use +registedSurikaeWithSelector:surikae of NSObject.  
 In this case IUTSurikae class retains UITSurikae object.  
-When you retrieve all replaced methods, call +[IUTSurikae cleanAll].  
-  
+When you retrieve all replaced methods, call +[NSObject removeAllSurikaes].  
+
+
 [See StopWatchTest2.m](https://github.com/katsuyoshi/Surikae/blob/master/sample/iUnitTest/Tests/StopWatchTest2.m)
 
     - (void)setUp
     {
         [super setUp];
         second = 0;
-        [IUTSurikae registedSurikaeWithClassName:@"NSDate" methodName:@"+date" surikae:^(){
-            return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
-        }];
+        [NSDate registedSurikaeWithSelector:@selector(date)
+            surikae:^()
+            {
+                return [NSDate dateWithYear:2012 month:2 day:17 hour:hour minute:minute second:second];
+            }
+        ];
         self.stopWatch = [StopWatch new];
     }
 
     - (void)tearDown
     {
         self.stopWatch = nil;
-        [IUTSurikae clearAll];
+        [NSDate removeAllSurikaes];
         [super tearDown];
     }
 Please see a sample project  
