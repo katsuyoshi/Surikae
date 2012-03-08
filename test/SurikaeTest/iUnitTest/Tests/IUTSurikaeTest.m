@@ -212,6 +212,15 @@
     ASSERT_EQUAL(@"foo", [foo foo]);
 }
 
+- (void)testRedefine
+{
+    [Foo surikaeWithSelector:@selector(foo) surikae:^() { return @"bar"; }];
+    @autoreleasepool {
+        [Foo surikaeWithSelector:@selector(foo) surikae:^() { return @"baz"; }];
+        ASSERT_EQUAL(@"baz", [Foo foo]);
+    }
+    ASSERT_EQUAL(@"bar", [Foo foo]);
+}
 
 
 #pragma mark -
