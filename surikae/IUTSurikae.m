@@ -205,6 +205,20 @@ static NSMutableArray *surikaeKamen = nil;
     [[self class] surikaeInstanceMethod:selector surikae:surikaeBlock context:contextBlock];
 }
 
+
++ (IUTSurikae *)surikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock
+{
+    return [[[IUTSurikae alloc] initWithClassMethod:selector class:self block:surikaeBlock] autorelease];
+}
+
++ (IUTSurikae *)surikaeInstanceMethod:(SEL)selector surikae:(void *)surikaeBlock
+{
+    return [[[IUTSurikae alloc] initWithInstanceMethod:selector class:self block:surikaeBlock] autorelease];
+}
+
+
+
+
 + (void)registedSurikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock
 {
     IUTSurikae *surikae = [[IUTSurikae alloc] initWithClassMethod:selector class:self block:surikaeBlock];

@@ -50,6 +50,10 @@ OF SUCH DAMAGE.
 + (void)surikaeInstanceMethod:(SEL)selector surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock;
 - (void)surikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock context:(void (^)(void))contextBlock;
 
++ (IUTSurikae *)surikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock;
++ (IUTSurikae *)surikaeInstanceMethod:(SEL)selector surikae:(void *)surikaeBlock;
+
+
 + (void)registedSurikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock;
 + (void)registedSurikaeInstanceMethod:(SEL)selector surikae:(void *)surikaeBlock;
 - (void)registedSurikaeWithSelector:(SEL)selector surikae:(void *)surikaeBlock;
